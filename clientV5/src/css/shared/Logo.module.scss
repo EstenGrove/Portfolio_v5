@@ -1,0 +1,46 @@
+@import "../../sass/variables";
+@import "../../sass/mixins";
+@import "../../sass/custom";
+
+$accent: var(--accent);
+.Logo {
+	width: 100%;
+	height: 100%;
+	min-width: 5rem;
+	min-height: 5rem;
+
+	&_icon {
+		@include fill_container;
+		min-width: 5rem;
+		min-height: 5rem;
+		background-repeat: no-repeat;
+		background-size: fill;
+		-webkit-background-origin: border;
+		background-image: url("../../assets/logo/LOGO.svg");
+	}
+}
+
+.LogoText {
+	font-size: 2.8rem;
+	font-weight: 400;
+	font-family: var(--font-logo);
+	// color: var(--logo-color);
+	margin-right: auto;
+
+	& > a {
+		color: var(--logo-color);
+		text-decoration: none;
+
+		& > b {
+			color: $accent;
+		}
+	}
+	&:hover {
+		cursor: pointer;
+		color: $accent;
+	}
+
+	& > b {
+		color: $accent;
+	}
+}

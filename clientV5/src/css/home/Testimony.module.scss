@@ -1,0 +1,28 @@
+@import "../../sass/variables";
+@import "../../sass/mixins";
+@import "../../sass/custom";
+
+.Testimony {
+	width: 100%;
+	height: auto;
+	max-height: 30rem;
+	padding: 2rem calc(var(--pagePadding) - 2rem);
+	border-radius: 1rem;
+	border: 1px solid var(--border);
+	background-color: var(--blueGrey300);
+
+	&_inner {
+		@include fill_container;
+
+		&_quote {
+			font-size: calc(1.3vw + 1.3vh);
+			font-weight: 600;
+			color: var(--text-main);
+		}
+		&_from {
+			font-size: calc(1.3vw + 1.3vh);
+			font-weight: 600;
+			color: var(--accent);
+		}
+	}
+}

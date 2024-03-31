@@ -1,0 +1,22 @@
+@import "../../sass/variables";
+@import "../../sass/mixins";
+@import "../../sass/custom";
+
+.SocialBar {
+	width: fit-content;
+	height: 3.5rem;
+	border-radius: 5rem;
+	@include flex_row(flex-end, center);
+	gap: 0 0.5rem;
+}
+
+.SocialIcon {
+	width: 2.5rem;
+	height: 2.5rem;
+	border-radius: 50%;
+
+	&_icon {
+		@include fill_container;
+		fill: var(--social-icon);
+	}
+}

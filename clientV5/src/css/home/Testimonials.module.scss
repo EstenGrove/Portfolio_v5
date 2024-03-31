@@ -1,0 +1,10 @@
+@import "../../sass/variables";
+@import "../../sass/mixins";
+@import "../../sass/custom";
+
+.Testimonials {
+	width: 100%;
+	padding: 0 calc(var(--pagePadding) - 1rem);
+	@include flex_col(flex-start, flex-start);
+	gap: 2rem 2rem;
+}

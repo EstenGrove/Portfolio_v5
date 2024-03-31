@@ -1,0 +1,63 @@
+@import "../../sass/variables";
+@import "../../sass/mixins";
+@import "../../sass/custom";
+
+.Col {
+	width: max-content;
+	height: auto;
+	display: flex;
+	flex-direction: column;
+}
+
+// JUSTIFY-CONTENT (ROW AXIS)
+.rowStart {
+	justify-content: flex-start;
+}
+.rowEnd {
+	justify-content: flex-end;
+}
+.rowCenter {
+	justify-content: center;
+}
+.rowAround {
+	justify-content: space-around;
+}
+.rowBetween {
+	justify-content: space-between;
+}
+.rowEvenly {
+	justify-content: space-evenly;
+}
+.rowStretch {
+	justify-content: stretch;
+}
+// ALIGN-ITEMS (COLUMN AXIS)
+.colStart {
+	align-items: flex-start;
+}
+.colEnd {
+	align-items: flex-end;
+}
+.colCenter {
+	align-items: center;
+}
+.colAround {
+	align-items: space-around;
+}
+.colBetween {
+	align-items: space-between;
+}
+.colEvenly {
+	align-items: space-evenly;
+}
+.colStretch {
+	align-items: stretch;
+}
+
+// FLEX-WRAP CLASSES
+.wrap {
+	flex-wrap: wrap;
+}
+.noWrap {
+	flex-wrap: nowrap;
+}

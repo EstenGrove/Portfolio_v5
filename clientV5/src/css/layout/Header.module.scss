@@ -1,0 +1,48 @@
+@import "../../sass/variables";
+@import "../../sass/mixins";
+@import "../../sass/custom";
+
+$accent: var(--accent);
+
+.Header {
+	width: 100%;
+	// min-height: 85vh;
+	min-height: 88vh;
+	height: calc(100vh - 10rem);
+	padding: calc(var(--pagePadding) * 2);
+	padding-bottom: var(--pagePadding);
+
+	&_intro {
+		font-size: calc(4vw + 4vh);
+		color: var(--header-hi);
+	}
+	&_name {
+		font-size: calc(1.8vw + 1.8vh);
+		color: var(--header-name);
+		line-height: 2rem;
+	}
+	&_title {
+		font-size: calc(2.5vw + 2.5vh);
+		color: var(--header-title);
+	}
+}
+
+b {
+	color: $accent;
+}
+
+@media only screen and (max-width: 1200px) {
+	.Header {
+		padding-top: calc(var(--pagePadding) * 3);
+	}
+}
+
+@media only screen and (max-width: 650px) {
+	.Header {
+		padding-top: calc(var(--pagePadding) + 15vh);
+
+		&_title {
+			margin-bottom: 0.5rem;
+		}
+	}
+}

@@ -1,0 +1,51 @@
+@import "../../sass/variables";
+@import "../../sass/mixins";
+@import "../../sass/custom";
+
+.Wave {
+	width: auto;
+	max-width: 100%;
+	margin-top: -10rem;
+	// max-height: 30rem;
+
+	&_top {
+		height: auto;
+		margin-top: -3.8rem;
+	}
+	&_middle {
+		background-color: var(--bg-body);
+		margin-top: -1rem;
+	}
+	&_bottom {
+		// margin-top: calc(10vw - 15vh);
+		// margin-top: -19rem;
+		margin-top: -75rem;
+		background-color: var(--bg-body);
+	}
+}
+.MiddleWave1 {
+	width: auto;
+}
+
+.TopWave1 {
+	//
+}
+.WaveSeparator {
+	width: auto;
+}
+
+.WavePadding {
+	width: 100%;
+	height: 10rem;
+	margin-top: -1rem;
+	background-color: #5f17e6;
+}
+
+.BottomWave1 {
+	margin-top: -1rem;
+}
+@media only screen and (min-width: 1500px) {
+	.TopWave1 {
+		margin-top: -10rem;
+	}
+}

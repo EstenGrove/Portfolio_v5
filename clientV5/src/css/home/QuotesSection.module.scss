@@ -1,0 +1,14 @@
+@import "../../sass/variables";
+@import "../../sass/mixins";
+@import "../../sass/custom";
+
+$accent: var(--accent);
+
+$sectionPadding: var(--pagePadding)
+	calc(var(--pagePadding) + var(--page-content-padding));
+
+.QuotesSection {
+	@include fill_container;
+
+	padding: $sectionPadding;
+}

@@ -1,0 +1,59 @@
+@import "../../sass/variables";
+@import "../../sass/mixins";
+@import "../../sass/custom";
+
+.ThemeToggle {
+	width: 4rem;
+	padding: 0.05rem 0;
+	border-radius: 5rem;
+	border: 1px solid var(--border);
+	@include flex_row(flex-start, center);
+
+	&:hover {
+		cursor: pointer;
+	}
+
+	&_icon {
+		margin-top: -0.01rem;
+		width: 2rem;
+		height: 2rem;
+		fill: var(--toggle-sun);
+	}
+}
+:root[data-theme="dark"] {
+	.ThemeToggle {
+		background-color: var(--blueGrey800);
+
+		&_icon {
+			animation: toggleLeft 0.3s ease-in-out;
+			animation-fill-mode: backwards;
+		}
+	}
+}
+:root[data-theme="light"] {
+	.ThemeToggle {
+		background-color: var(--blueGrey300);
+
+		&_icon {
+			animation: toggleRight 0.3s ease-in-out;
+			animation-fill-mode: forwards;
+		}
+	}
+}
+
+@keyframes toggleRight {
+	from {
+		transform: translateX(0%);
+	}
+	to {
+		transform: translateX(100%);
+	}
+}
+@keyframes toggleLeft {
+	from {
+		transform: translateX(100%);
+	}
+	to {
+		transform: translateX(0%);
+	}
+}

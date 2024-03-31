@@ -1,0 +1,26 @@
+@import "../../sass/variables";
+@import "../../sass/mixins";
+@import "../../sass/custom";
+
+.HomePage {
+	width: 100%;
+	height: auto;
+	min-height: 110vh;
+	min-height: 310vh;
+}
+
+.ResumeButton {
+	padding: 0.8rem 1.7rem;
+	border-radius: 5rem;
+	background-color: var(--accent-bg);
+	color: var(--accent);
+	// color: var(--blueGrey300);
+	font-size: 1.6rem;
+	font-weight: 700;
+	border: none;
+	outline: none;
+	&:hover {
+		cursor: pointer;
+		filter: drop-shadow(0 0 2em var(--accent));
+	}
+}
