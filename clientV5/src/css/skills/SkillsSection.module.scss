@@ -1,0 +1,10 @@
+@import "../../sass/variables";
+@import "../../sass/mixins";
+@import "../../sass/custom";
+
+$accent: var(--accent);
+
+.SkillsSection {
+	width: 100%;
+	@include sectionPadding();
+}

@@ -130,3 +130,14 @@ $defaultColor: rgba(0, 0, 0, 0.49);
 		background-color: $color;
 	}
 }
+
+// SECTIONS PADDING
+
+@mixin sectionPadding() {
+	padding: var(--pagePadding)
+		calc(var(--pagePadding) + var(--page-content-padding));
+
+	@media only screen and (max-width: 700px) {
+		padding: var(--pagePadding) calc(var(--pagePadding) + 1rem);
+	}
+}

@@ -4,14 +4,11 @@
 
 $accent: var(--accent);
 
-$sectionPadding: var(--pagePadding)
-	calc(var(--pagePadding) + var(--page-content-padding));
-
 .AboutSection {
 	width: 100%;
 	height: 100vh;
 	min-height: 40vh;
-	padding: $sectionPadding;
+	@include sectionPadding();
 	display: block;
 	background-color: var(--bg-body);
 
@@ -35,22 +32,16 @@ $sectionPadding: var(--pagePadding)
 	word-break: normal;
 
 	& b {
-		// text-decoration: 2px solid underline;
 		font-style: normal;
 	}
 	& [data-text] {
 		color: $accent;
 		text-decoration: none;
 	}
-	& [data-text="DNS"] {
-		// text-decoration: 2px solid underline;
-		// text-decoration-color: $accent;
-	}
 }
 
 @media only screen and (max-width: 650px) {
 	.AboutSection {
-		padding: var(--pagePadding) calc(var(--pagePadding) + 1rem);
 		margin-top: -1rem;
 
 		&_content {

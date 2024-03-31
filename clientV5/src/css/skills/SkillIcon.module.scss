@@ -1,0 +1,26 @@
+@import "../../sass/variables";
+@import "../../sass/mixins";
+@import "../../sass/custom";
+
+.SkillIcon {
+	width: 10rem;
+	height: 10rem;
+	@include flex_col(center, center, nowrap);
+
+	&:hover {
+		filter: drop-shadow(0 0 2em #646cffaa);
+		cursor: pointer;
+	}
+
+	&_icon {
+		width: 5rem;
+		height: 5rem;
+		margin-bottom: 0.5rem;
+	}
+	&_label {
+		font-size: 1.5rem;
+		font-weight: 600;
+		color: var(--nav-text);
+		text-align: center;
+	}
+}

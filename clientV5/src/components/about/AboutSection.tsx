@@ -25,10 +25,10 @@ const ParaWithHighlight = ({ text, highlights }: TPara) => {
 
 const AboutSection = () => {
 	const titleRef = useRef<HTMLDivElement>(null);
-	const result = useIntersectionObserver(titleRef);
-	const isActive = useMemo(() => {
-		return result?.isIntersecting ?? false;
-	}, [result?.isIntersecting]);
+	// const result = useIntersectionObserver(titleRef);
+	// const isActive = useMemo(() => {
+	// 	return result?.isIntersecting ?? false;
+	// }, [result?.isIntersecting]);
 
 	return (
 		<section className={styles.AboutSection} ref={titleRef}>

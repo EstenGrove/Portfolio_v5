@@ -1,0 +1,22 @@
+@import "../../sass/variables";
+@import "../../sass/mixins";
+@import "../../sass/custom";
+
+.SkillsPrimary {
+	width: 100%;
+	height: auto;
+
+	&_desc {
+		font-size: calc(1.5vw + 1.5vh);
+		font-weight: 600;
+		color: var(--nav-text);
+		text-align: center;
+		margin-bottom: 2rem;
+	}
+
+	&_list {
+		width: 100%;
+		height: auto;
+		@include flex_row(space-evenly, flex-start, wrap);
+	}
+}

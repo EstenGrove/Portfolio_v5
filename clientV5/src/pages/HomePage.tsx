@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styles from "../css/pages/HomePage.module.scss";
 import resume from "../assets/docs/Resume.pdf";
 // components
@@ -9,6 +9,9 @@ import Modal from "../components/shared/Modal";
 import AboutSection from "../components/about/AboutSection";
 import QuotesSection from "../components/home/QuotesSection";
 import TimelineSection from "../components/home/TimelineSection";
+import TinyPixel from "../components/shared/TinyPixel";
+import { enableTinyPixel } from "../utils/utils_env";
+import SkillsSection from "../components/skills/SkillsSection";
 
 type Props = {};
 
@@ -23,6 +26,8 @@ const ResumeButton = ({ openResume }: TResumeButton) => {
 		</button>
 	);
 };
+
+const isEnabled = enableTinyPixel;
 
 const HomePage = () => {
 	const [showResumeModal, setShowResumeModal] = useState<boolean>(false);
@@ -44,13 +49,16 @@ const HomePage = () => {
 			<AboutSection />
 			<WaveBackground order={["top", "bottom"]} />
 			<TimelineSection />
-			{/* <QuotesSection /> */}
+			<WaveBackground order={["top", "bottom"]} />
+			<SkillsSection />
 
 			{showResumeModal && (
 				<Modal closeModal={closeResume}>
 					<div style={{ minHeight: "400rem" }}>content here...</div>
 				</Modal>
 			)}
+			{/* VISITOR ANALYTICS - DISABLED LOCALLY BY DEFAULT */}
+			{isEnabled && <TinyPixel pageRoute="/" />}
 		</div>
 	);
 };
