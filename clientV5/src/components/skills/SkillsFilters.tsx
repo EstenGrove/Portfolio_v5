@@ -1,8 +1,7 @@
 import React from "react";
-import styles from "../../css/skills/SkillFilters.module.scss";
-// import { PropTypes } from "prop-types";
-import type { SkillFilter, SkillType } from "../../configs/types.d.ts";
+import styles from "../../css/skills/SkillsFilters.module.scss";
 import { isSkillSelected } from "../../utils/utils_skills.ts";
+import { TSkillFilter, TSkillFilterName } from "../../configs/skillsConfig.ts";
 // components
 import SkillsFilter from "./SkillsFilter";
 
@@ -28,10 +27,10 @@ const SelectAll = ({ toggleSelectAll, isSelected = false }: SelectAllProps) => {
 };
 
 type Props = {
-	filters: SkillType[];
-	selectedFilters: SkillFilter[];
+	filters: TSkillFilter[];
+	selectedFilters: TSkillFilterName[];
 	areAllFiltersSelected: boolean;
-	toggleFilter: (filter: SkillType) => void;
+	toggleFilter: (filter: TSkillFilter) => void;
 	toggleSelectAll: () => void;
 };
 

@@ -7,4 +7,13 @@ $accent: var(--accent);
 .SkillsSection {
 	width: 100%;
 	@include sectionPadding();
+
+	&_desc {
+		font-size: calc(1vw + 1vh);
+		font-weight: 600;
+		color: var(--nav-text);
+		text-align: center;
+		margin-top: 4rem;
+		margin-bottom: 2rem;
+	}
 }

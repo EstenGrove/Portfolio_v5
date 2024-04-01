@@ -1,0 +1,16 @@
+@import "../../sass/variables";
+@import "../../sass/mixins";
+@import "../../sass/custom";
+
+.NoSkillFound {
+	width: 100%;
+	@include flex_row(center, flex-start, wrap);
+	margin-top: 2rem;
+
+	&_text {
+		text-align: center;
+		font-size: 1.6rem;
+		font-weight: 600;
+		color: var(--orange500);
+	}
+}

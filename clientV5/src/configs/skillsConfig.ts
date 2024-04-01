@@ -1,4 +1,4 @@
-export type TSkillType =
+export type TSkillFilterType =
 	| "language"
 	| "library"
 	| "framework"
@@ -11,30 +11,35 @@ export type TSkillFilterName =
 	| "Platforms"
 	| "Tools";
 
-export type TSkillTypeRecord = {
+export type TSkillFilter = {
 	name: string;
 	alt: string;
 	value: string;
 };
 
 export type TSkillTypesMap = {
-	language: TSkillTypeRecord;
-	library: TSkillTypeRecord;
-	framework: TSkillTypeRecord;
-	platform: TSkillTypeRecord;
-	tool: TSkillTypeRecord;
+	language: TSkillFilter;
+	library: TSkillFilter;
+	framework: TSkillFilter;
+	platform: TSkillFilter;
+	tool: TSkillFilter;
 };
 
-export type TSkillFilters = TSkillTypeRecord[];
+export type TSkillFilters = TSkillFilter[];
 
 export interface TSkill {
 	name: string;
 	icon: string;
 }
 
+// adds the 'type' field
+export type TExperience = TSkill & {
+	type?: string;
+};
+
 export interface TSkillsConfig {
 	primary: TSkill[];
-	experience: TSkill[];
+	experience: TExperience[];
 }
 
 const SKILL_TYPES: TSkillTypesMap = {

@@ -1,0 +1,30 @@
+@import "../../sass/variables";
+@import "../../sass/mixins";
+@import "../../sass/custom";
+
+.ScrollToTopButton {
+	width: 3rem;
+	height: 3rem;
+	position: fixed;
+	bottom: 1rem;
+	right: 1rem;
+	border-radius: 50%;
+	background-color: transparent;
+	border: 2px solid rgba(173, 175, 177, 0.7);
+	outline: none;
+	@include flex_row(center, center);
+	&:hover {
+		border: 2px solid rgba(173, 175, 177, 1);
+		border: 2px solid var(--accent);
+	}
+
+	&_icon {
+		width: 3rem;
+		height: 3rem;
+		fill: rgba(173, 175, 177, 0.7);
+		&:hover {
+			cursor: pointer;
+			fill: var(--accent);
+		}
+	}
+}

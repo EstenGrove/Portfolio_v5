@@ -17,7 +17,11 @@ const SkillsSection = ({}: Props) => {
 		<section className={styles.SkillsSection}>
 			<Title title="skills" />
 			<SkillsPrimary skillsList={primary} />
-			{/* <SkillsController/> */}
+			<div className={styles.SkillsSection_desc}>
+				Didn't find what you're looking for? Here's some more tools and tech
+				I've used to varying degrees. Search & filter it!
+			</div>
+			<SkillsController experience={experience} />
 			{/*  */}
 			{/*  */}
 			{/*  */}

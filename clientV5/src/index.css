@@ -227,12 +227,13 @@
 	--header-hi: rgb(17, 24, 39);
 	--header-name: var(--blueGrey500);
 	--header-title: rgb(17, 24, 39);
-	transition: all 0.2s ease-in-out;
 	--lightGradient: var(--lightGradient);
 	--social-icon: var(--blueGrey500);
 	/* TIMELINE VARIABLES */
 	--timeline-path: var(--blueGrey400);
 	--timeline-dot-size: 1.5rem;
+	/* SKILLS FILTERS */
+	--skill-bg: var(--accent-bg);
 }
 :root[data-theme="dark"] {
 	--bg-body: #0d1115;
@@ -253,11 +254,12 @@
 	--header-hi: #ffffff;
 	--header-name: var(--blueGrey600);
 	--header-title: #ffffff;
-	transition: all 0.2s ease-in-out;
 	--darkGradient: var(--darkGradient);
 	/* TIMELINE VARIABLES */
 	--timeline-path: var(--nav-text);
 	--timeline-dot-size: 1.5rem;
+	/* SKILLS FILTERS */
+	--skill-bg: var(--blueGrey900);
 }
 
 *,

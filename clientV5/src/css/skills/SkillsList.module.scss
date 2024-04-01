@@ -1,0 +1,9 @@
+@import "../../sass/variables";
+@import "../../sass/mixins";
+@import "../../sass/custom";
+
+.SkillsList {
+	width: 100%;
+	height: auto;
+	@include flex_row(space-evenly, flex-start, wrap);
+}

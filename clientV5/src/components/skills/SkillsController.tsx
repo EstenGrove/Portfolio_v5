@@ -4,6 +4,8 @@ import {
 	TSkill,
 	SKILL_FILTERS as skillFilters,
 	ALL_SKILL_FILTERS as allFilters,
+	TSkillFilterName,
+	TSkillFilter,
 } from "../../configs/skillsConfig.ts";
 import {
 	filterAndSearchSkills,
@@ -11,7 +13,7 @@ import {
 } from "../../utils/utils_skills.ts";
 // components
 import SkillsInput from "./SkillsInput";
-import SkillFilters from "./SkillFilters";
+import SkillsFilters from "./SkillsFilters";
 import SkillsList from "./SkillsList.js";
 import NoSkillFound from "./NoSkillFound.js";
 
@@ -22,7 +24,9 @@ type Props = {
 const SkillsController = ({ experience }: Props) => {
 	const [searchVal, setSearchVal] = useState<string>("");
 	// array of strings ('name' only)
-	const [selectedFilters, setSelectedFilters] = useState(["Frameworks"]);
+	const [selectedFilters, setSelectedFilters] = useState<TSkillFilterName[]>([
+		"Frameworks",
+	]);
 	const [skills, setSkills] = useState<TSkill[]>([...experience]);
 	const visibleSkills: TSkill[] = useMemo(() => {
 		const results: TSkill[] = filterAndSearchSkills(
@@ -46,7 +50,7 @@ const SkillsController = ({ experience }: Props) => {
 		// clear search results here...
 	};
 
-	const toggleFilter = (filter) => {
+	const toggleFilter = (filter: TSkillFilter) => {
 		const isAlreadySelected: boolean = isSkillSelected(filter, selectedFilters);
 
 		if (isAlreadySelected) {
@@ -56,7 +60,7 @@ const SkillsController = ({ experience }: Props) => {
 			setSelectedFilters(newFilters);
 		} else {
 			const newFilters = [...selectedFilters, filter.name];
-			setSelectedFilters(newFilters);
+			setSelectedFilters(newFilters as TSkillFilterName[]);
 		}
 		// APPLY FILTER TO RESULTS (MAYBE THRU SIDE-EFFECT)
 	};
@@ -81,7 +85,7 @@ const SkillsController = ({ experience }: Props) => {
 				/>
 			</div>
 			<div className={styles.SkillsController_filters}>
-				<SkillFilters
+				<SkillsFilters
 					filters={skillFilters}
 					selectedFilters={selectedFilters}
 					areAllFiltersSelected={areAllFiltersSelected}

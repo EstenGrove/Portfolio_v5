@@ -1,8 +1,11 @@
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import "./App.scss";
-import HomePage from "./pages/HomePage";
-import Navbar from "./components/layout/Navbar";
 import { ThemeProvider } from "./context/ThemeContext";
+// global components
+import Navbar from "./components/layout/Navbar";
+import ScrollToTopButton from "./components/shared/ScrollToTopButton";
+// pages
+import HomePage from "./pages/HomePage";
 import AboutPage from "./pages/AboutPage";
 import ProjectsPage from "./pages/ProjectsPage";
 import SnippetsPage from "./pages/SnippetsPage";
@@ -24,6 +27,7 @@ function App() {
 							<Route path="/blog" element={<BlogPage />} />
 							<Route path="*" element={<HomePage />} />
 						</Routes>
+						<ScrollToTopButton />
 					</div>
 				</ThemeProvider>
 			</div>
