@@ -1,4 +1,4 @@
-import React, { CSSProperties } from "react";
+import { CSSProperties } from "react";
 import styles from "../../css/design/WaveBackground.module.scss";
 
 type TopProps = {
@@ -81,7 +81,6 @@ const renderByType = (
 type Props = {
 	order: TWaveType[];
 	options?: {
-		// [key: TWaveType]: CSSProperties | undefined;
 		top?: CSSProperties | undefined;
 		padding?: CSSProperties | undefined;
 		bottom?: CSSProperties | undefined;
@@ -93,7 +92,6 @@ type TWaveType = "top" | "bottom" | "padding";
 interface IWaveConfig {
 	order: TWaveType[];
 	options?: {
-		// [key: TWaveType]: CSSProperties | undefined;
 		top?: CSSProperties | undefined;
 		padding?: CSSProperties | undefined;
 		bottom?: CSSProperties | undefined;
@@ -113,7 +111,9 @@ const renderWaves = (order: TWaveType[], options: object) => {
 
 const WaveBackground = ({ order = [], options }: Props) => {
 	return (
-		<div className={styles.WaveBackground}>{renderWaves(order, options)}</div>
+		<div className={styles.WaveBackground}>
+			{renderWaves(order as TWaveType[], options as object)}
+		</div>
 	);
 };
 

@@ -1,7 +1,6 @@
-import React, { useMemo, useRef } from "react";
+import { useRef } from "react";
 import styles from "../../css/about/AboutSection.module.scss";
 import { aboutText } from "../../configs/aboutMeConfig";
-import { useIntersectionObserver } from "../../hooks/useIntersectionObserver";
 import { renderTextWithHighlights } from "../../utils/utils_text";
 import Title from "../shared/Title";
 import GoToLink from "../shared/GoToLink";
@@ -25,10 +24,6 @@ const ParaWithHighlight = ({ text, highlights }: TPara) => {
 
 const AboutSection = () => {
 	const titleRef = useRef<HTMLDivElement>(null);
-	// const result = useIntersectionObserver(titleRef);
-	// const isActive = useMemo(() => {
-	// 	return result?.isIntersecting ?? false;
-	// }, [result?.isIntersecting]);
 
 	return (
 		<section className={styles.AboutSection} ref={titleRef}>
@@ -49,6 +44,7 @@ const AboutSection = () => {
 	);
 };
 
+export { ParaWithHighlight };
 export default AboutSection;
 
 AboutSection.defaultProps = {};

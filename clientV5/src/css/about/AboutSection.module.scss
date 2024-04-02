@@ -10,7 +10,7 @@ $accent: var(--accent);
 	min-height: 40vh;
 	@include sectionPadding();
 	display: block;
-	background-color: var(--bg-body);
+	// background-color: var(--bg-body);
 
 	&_content {
 		width: 100%;

@@ -11,6 +11,9 @@ import ProjectsPage from "./pages/ProjectsPage";
 import SnippetsPage from "./pages/SnippetsPage";
 import ContactPage from "./pages/ContactPage";
 import BlogPage from "./pages/BlogPage";
+import { genericGet } from "./utils/utils_misc";
+
+genericGet();
 
 function App() {
 	return (

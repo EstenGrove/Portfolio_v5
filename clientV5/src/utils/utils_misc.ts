@@ -1,31 +1,41 @@
-const createFakeRecord = (idx) => {
-	return {
-		id: `${idx}${crypto.randomUUID()}`,
-		name: "Esten",
-		age: 30,
-	};
-};
+import { currentEnv } from "./utils_env";
 
-const generateFakeData = (count = 10) => {
-	const data = [];
-	for (let i = 0; i < count; i++) {
-		data.push(createFakeRecord(i));
+// API UTILS
+
+const TOKEN = "DUMMY-TOKEN";
+
+const genericGet = async (token = TOKEN) => {
+	const url = currentEnv.base + "/CheckAuth";
+	try {
+		const request = await fetch(url, {
+			method: "GET",
+			headers: {
+				Authorization:
+					"Basic " + btoa(currentEnv.user + ":" + currentEnv.password),
+				SecurityToken: TOKEN,
+				"Content-Type": "application/json",
+			},
+		});
+		const response = await request.json();
+		return response;
+	} catch (error) {
+		console.log("error", error);
+		return error;
 	}
-	return data;
 };
 
 // FUNCTIONAL UTILS
-type callback = (arg: unknown) => void;
-type composedCbs = callback[];
+type TCallback = (arg: unknown) => void;
+type TCallbacks = TCallback[];
 
-const compose = (...fns: composedCbs[]) => {
+const compose = (...fns: TCallbacks[]) => {
 	return (initialVal: unknown) => {
 		return fns.reduceRight((acc, fn) => {
-			return fn(acc) as callback;
+			return fn(acc) as TCallback;
 		}, initialVal);
 	};
 };
-const pipe = (...fns: composedCbs[]) => {
+const pipe = (...fns: TCallbacks[]) => {
 	return (initialVal: unknown) => {
 		return fns.reduce((acc, fn) => {
 			return fn(acc);
@@ -66,6 +76,6 @@ const groupByLoop = (key, list) => {
 	return map;
 };
 
-export { generateFakeData };
+export { genericGet };
 
 export { compose, pipe, asyncPipe, groupByReduce, groupByLoop };

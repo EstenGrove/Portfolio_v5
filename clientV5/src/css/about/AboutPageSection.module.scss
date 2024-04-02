@@ -1,0 +1,35 @@
+@import "../../sass/variables";
+@import "../../sass/mixins";
+@import "../../sass/custom";
+
+$accent: var(--accent);
+
+.AboutPageSection {
+	width: 100%;
+	height: 100vh;
+	min-height: 40vh;
+	@include sectionPadding();
+	display: block;
+	// background-color: var(--bg-body);
+
+	&_content {
+		width: 100%;
+		height: auto;
+		&_para {
+			width: 100%;
+			font-size: calc(1.3vw + 1.2vh);
+			font-weight: 600;
+			letter-spacing: 0.05rem;
+			line-height: calc(2vw + 2vh);
+			margin-bottom: 2rem;
+			color: var(--blueGrey700);
+		}
+	}
+}
+
+@media only screen and (max-width: 700px) {
+	.AboutPageSection {
+		padding-left: 0.5rem;
+		padding-right: 0.5rem;
+	}
+}

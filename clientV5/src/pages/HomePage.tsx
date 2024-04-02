@@ -41,7 +41,7 @@ const HomePage = () => {
 	};
 
 	return (
-		<div className={styles.HomePage}>
+		<div data-page="home" className={styles.HomePage}>
 			<Header>
 				<ResumeButton openResume={openResume} />
 			</Header>
