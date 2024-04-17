@@ -1,15 +1,10 @@
-import React from "react";
 import styles from "../../css/design/GradientBackground.module.scss";
 
-type Props = {
-	cssVar: string;
-};
-
-const GradientBackground = ({ cssVar }: Props) => {
+const GradientBackground = () => {
 	return (
 		<div
 			className={styles.GradientBackground}
-			style={{ backgroundImage: `var(--${cssVar})` }}
+			// style={{ backgroundImage: `var(--${cssVar})` }}
 		>
 			{/*  */}
 			{/*  */}

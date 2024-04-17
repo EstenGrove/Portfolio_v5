@@ -1,4 +1,4 @@
-import { useState, MutableRefObject, useEffect } from "react";
+import { useState, MutableRefObject, useEffect, RefObject } from "react";
 
 type THookState = {
 	isIntersecting: boolean;
@@ -25,9 +25,9 @@ type THookProps = {
 // 	options?: TEntryOptions = {}
 // ): THookState => {
 const useIntersectionObserver = (
-	nodeRef,
-	optionalCallback = null,
-	options = {}
+	nodeRef: RefObject<HTMLElement>,
+	optionalCallback: (() => void) | null = null,
+	options: TEntryOptions = {}
 ): THookState => {
 	const { threshold = 0, root = null, rootMargin = "0%" } = options ?? {};
 	// entry state for target node

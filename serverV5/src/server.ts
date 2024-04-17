@@ -22,6 +22,8 @@ app.use("/api/v1", internalRoutes_v1);
 
 app.listen(PORT, () => {
 	console.log(
-		`Server was loaded/refreshed at ${formatTime(new Date())} on port: ${PORT}`
+		`✅ Server was loaded/refreshed at ${formatTime(
+			new Date()
+		)} on port: ${PORT}`
 	);
 });

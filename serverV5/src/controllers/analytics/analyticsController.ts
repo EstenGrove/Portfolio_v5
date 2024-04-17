@@ -2,6 +2,13 @@ import express from "express";
 
 const app = express();
 
+/**
+ * A static response containing:
+ * - Base64-encoded transparent image in .gif format
+ * - 200 status code
+ * - Relevant headers
+ * NOTE: this is just used for the 'TinyPixel' visit counter feature
+ */
 const response = {
 	statusCode: 200,
 	body: "R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7",
