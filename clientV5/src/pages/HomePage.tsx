@@ -12,6 +12,7 @@ import TimelineSection from "../components/home/TimelineSection";
 import TinyPixel from "../components/shared/TinyPixel";
 import { enableTinyPixel } from "../utils/utils_env";
 import SkillsSection from "../components/skills/SkillsSection";
+import GradientBackground from "../components/design/GradientBackground";
 
 type Props = {};
 
@@ -52,6 +53,7 @@ const HomePage = () => {
 			<WaveBackground order={["top", "bottom"]} />
 			<SkillsSection />
 
+			<GradientBackground />
 			{showResumeModal && (
 				<Modal closeModal={closeResume}>
 					<div style={{ minHeight: "400rem" }}>content here...</div>
