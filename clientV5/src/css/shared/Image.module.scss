@@ -1,0 +1,9 @@
+@import "../../sass/variables";
+@import "../../sass/mixins";
+@import "../../sass/custom";
+
+.Image {
+	width: max-content;
+	height: max-content;
+	border-radius: 1rem;
+}
