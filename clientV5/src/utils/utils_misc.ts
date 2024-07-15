@@ -43,7 +43,7 @@ const pipe = (...fns: TCallbacks[]) => {
 	};
 };
 
-const asyncPipe = (...fns) => {
+const asyncPipe = (...fns: TCallbacks[]) => {
 	return (initialVal: unknown) => {
 		return fns.reduce((acc, fn) => {
 			return acc.then(fn);
@@ -63,13 +63,40 @@ const groupByReduce = (key, list) => {
 	return results;
 };
 
-const groupByLoop = (key, list) => {
+export interface Grouped<T> {
+	[index: string]: T[];
+}
+
+// const groupByLoop = <T extends object>(
+const groupByLoop = <T extends Record<PropertyKey, object>>(
+	key: keyof T,
+	list: T[]
+	// list: Record<string, T[]>
+): Grouped<T> => {
 	const map = {};
 	for (let i = 0; i < list.length; i++) {
 		const currentItem = list[i];
 		const mapKey = currentItem[key];
-		if (!map[mapKey]) {
-			map[mapKey] = [];
+		if (!map[mapKey as keyof object]) {
+			map[mapKey as keyof object] = [];
+		}
+		map[mapKey].push(currentItem);
+	}
+	return map as Grouped<T>;
+};
+
+type GroupByReturn<T> = Record<string, T[]>;
+
+const groupByLoop2 = <T extends object>(
+	key: string,
+	list: T[]
+): GroupByReturn<T> => {
+	const map = {};
+	for (let i = 0; i < list.length; i++) {
+		const currentItem = list[i];
+		const mapKey = currentItem[key as keyof object];
+		if (!map[mapKey as keyof object]) {
+			map[mapKey as keyof T] = [];
 		}
 		map[mapKey].push(currentItem);
 	}

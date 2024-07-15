@@ -1,79 +1,107 @@
-import { useState, MutableRefObject, useEffect, RefObject } from "react";
+import { useState, useEffect, RefObject, useCallback, useRef } from "react";
 
-type THookState = {
+export interface IObserverOptions {
+	root?: null;
+	rootMargin?: string;
+	threshold?: number;
+}
+
+export interface IHookOpts {
+	settings?: IObserverOptions;
+	onIntersect?: (entry: IntersectionObserverEntry) => void;
+}
+
+// root: parent/ancestor that our 'target' may intersect with (null === viewport)
+// rootMargin: distance from between our 'target' & our root
+// threshold: the numeric value that we must exceed to trigger a valid 'intersection' occurrence
+const defaultOpts: IHookOpts = {
+	settings: {
+		root: null,
+		rootMargin: "0px",
+		threshold: 0.3,
+	},
+};
+
+export interface IEntryState {
 	isIntersecting: boolean;
-	entry?: IntersectionObserverEntry | null;
-};
+	entry: IntersectionObserverEntry | null;
+}
 
-type TEntryOptions =
-	| {
-			threshold?: number;
-			root?: string;
-			rootMargin?: string | number;
-	  }
-	| object;
+export interface IHookReturn {
+	entry: IEntryState;
+	observer: IntersectionObserver;
+}
 
-type THookProps = {
-	nodeRef: MutableRefObject<HTMLElement>;
-	optionalCallback?: () => void | null;
-	options?: TEntryOptions | undefined;
-};
-
-// const useIntersectionObserver = (
-// 	nodeRef: MutableRefObject<HTMLElement>,
-// 	optionalCallback?: () => void,
-// 	options?: TEntryOptions = {}
-// ): THookState => {
 const useIntersectionObserver = (
 	nodeRef: RefObject<HTMLElement>,
-	optionalCallback: (() => void) | null = null,
-	options: TEntryOptions = {}
-): THookState => {
-	const { threshold = 0, root = null, rootMargin = "0%" } = options ?? {};
-	// entry state for target node
-	const [entryState, setEntryState] = useState<THookState>({
+	options: IHookOpts = {}
+): IHookReturn => {
+	const { settings = defaultOpts, onIntersect } = options;
+	const {
+		root = null,
+		rootMargin = "0px",
+		threshold = 0.5,
+	} = settings as IObserverOptions;
+	// entry state
+	const observerRef = useRef<IntersectionObserver>();
+	const [entryState, setEntryState] = useState<IEntryState>({
 		isIntersecting: false,
 		entry: null,
 	});
 
+	const handleIntersection = useCallback(
+		(entries: IntersectionObserverEntry[]) => {
+			entries.forEach((entry) => {
+				const isInRange =
+					entry?.isIntersecting && entry?.intersectionRatio >= threshold;
+
+				if (isInRange) {
+					setEntryState({
+						isIntersecting: true,
+						entry: entry,
+					});
+					// check for handler
+					if (onIntersect) {
+						onIntersect(entry);
+					}
+				} else {
+					setEntryState({
+						isIntersecting: false,
+						entry: null,
+					});
+				}
+			});
+		},
+		[onIntersect, threshold]
+	);
+
+	// create observer, apply handler & settings & observe target node
 	useEffect(() => {
 		let isMounted = true;
 		if (!isMounted) return;
-		if (!nodeRef?.current) return;
-		const observer = new IntersectionObserver(
-			(entries: IntersectionObserverEntry[]): void => {
-				const thresholds = Array.isArray(observer.thresholds)
-					? observer.thresholds
-					: [observer.thresholds];
+		const node = nodeRef?.current as HTMLElement;
 
-				entries.forEach((entry) => {
-					const isIntersecting =
-						entry.isIntersecting &&
-						thresholds.some(
-							(threshold) => entry.intersectionRatio >= threshold
-						);
+		const observer = new IntersectionObserver(handleIntersection, {
+			root,
+			rootMargin,
+			threshold,
+		});
+		// set node & observe node
+		observerRef.current = observer;
 
-					if (optionalCallback && typeof optionalCallback === "function") {
-						setEntryState({ isIntersecting, entry });
-						optionalCallback();
-					} else {
-						setEntryState({ isIntersecting, entry });
-					}
-				});
-			},
-			{ threshold, root, rootMargin }
-		);
-
-		// add observer to node
-		observer.observe(nodeRef?.current);
+		observer.observe(node);
 
 		return () => {
 			isMounted = false;
-			observer.disconnect();
-		};
-	}, [nodeRef, optionalCallback, root, rootMargin, threshold]);
 
-	return entryState;
+			observer.unobserve(node);
+		};
+	}, [handleIntersection, nodeRef, root, rootMargin, threshold]);
+
+	return {
+		observer: observerRef?.current as IntersectionObserver,
+		entry: entryState,
+	};
 };
 
 export { useIntersectionObserver };

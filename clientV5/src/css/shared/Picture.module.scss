@@ -1,0 +1,15 @@
+@import "../../sass/variables";
+@import "../../sass/mixins";
+@import "../../sass/custom";
+
+.Picture {
+	width: max-content;
+	height: max-content;
+	border-radius: 1rem;
+
+	&_fallback {
+		width: max-content;
+		height: max-content;
+		border-radius: 1rem;
+	}
+}
