@@ -1,4 +1,4 @@
-import express from "express";
+import express, { NextFunction, Request, Response } from "express";
 
 const app = express();
 
@@ -16,7 +16,11 @@ const response = {
 	isBase64Encoded: true,
 };
 
-const logPageVisit = async (req, res, next) => {
+const logPageVisit = async (
+	req: Request,
+	res: Response,
+	next: NextFunction
+) => {
 	// - Page Route: (eg. '/home', '/about' etc)
 	// - Referrer: (eg. https://somedomain.com/)
 	// - User-Agent: browser, platform & device meta

@@ -13,7 +13,7 @@ export interface TAuthHeaders {
  */
 const processAuthHeaders = (authHeaders: string): TAuthHeaders => {
 	const headerStr = authHeaders.split(/\s+/).pop();
-	const buffer = Buffer.from(headerStr, "base64").toString();
+	const buffer = Buffer.from(headerStr as string, "base64").toString();
 	const username = buffer?.split(":")?.[0];
 	const password = buffer?.split(":")?.[1];
 

@@ -1,53 +1,76 @@
-export type TStatus = "SUCCESS" | "PENDING" | "FAILED";
+export type TResponseStatus = "SUCCESS" | "FAILED";
 
-export interface TData {
-	[key: string]: unknown;
+export type TModelShape = {
+	Status: TResponseStatus;
+	Data?: object;
+	Message?: string;
+	Results?: string | number;
+	ErrorMessage?: string;
+	ErrorStack?: string;
+};
+
+export interface IResponseModel {
+	model: TModelShape;
+	getModel: () => void;
+	getProp: (prop: string) => void;
 }
-
-export interface TModel {
-	Status: TStatus;
-	Data: TData;
-	Message: string;
-	Results: number;
-	ErrorMessage: string | null;
-	ErrorStack: string | null;
+/**
+ * 'IRequestResponse':
+ * - Custom response object each API will return back to the client, upon processing the request
+ */
+export interface IRequestResponse {
+	Status: TResponseStatus;
+	Data?: {
+		[key: string]: unknown;
+	};
+	Message?: string | null;
+	Results?: string | number;
+	ErrorMessage?: string | null;
+	ErrorStack?: string | null;
 }
 
 class ResponseModel {
-	model: TModel;
+	model: TModelShape;
 
 	constructor({
 		status,
-		data,
-		msg,
+		data = {},
+		msg = "",
 		results = 0,
 		errorMsg = null,
 		errorStack = null,
+	}: {
+		status: TResponseStatus;
+		data?: object | undefined;
+		msg?: string;
+		results?: number | string;
+		errorMsg?: string | null;
+		errorStack?: string | null;
 	}) {
 		this.model = {
 			Status: status,
 			Data: data,
 			Message: msg,
 			Results: results,
-			ErrorMessage: errorMsg,
-			ErrorStack: errorStack,
+			ErrorMessage: errorMsg as TModelShape["ErrorMessage"],
+			ErrorStack: errorStack as TModelShape["ErrorStack"],
 		};
-		return this.model as TModel;
+
+		// @ts-expect-error
+		return this.model;
 	}
 	getModel() {
 		return this.model;
 	}
-	getProp(prop) {
+	getProp(prop: string) {
 		if (!this.model.hasOwnProperty(prop)) {
 			throw new Error(
 				`Invalid property: ${prop} This does not exist on 'model'`
 			);
 		} else {
-			return this.model[prop];
+			return this.model[prop as keyof object];
 		}
 	}
 }
 
-module.exports = {
-	ResponseModel,
-};
+export { ResponseModel };

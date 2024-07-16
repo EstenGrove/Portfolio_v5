@@ -10,7 +10,7 @@ export type TAuthHeaders = string | undefined;
 
 const apiLogin = (req: Request, res: Response, next: NextFunction) => {
 	const authHeaders: TAuthHeaders = req.headers.authorization;
-	const isValidAuth: boolean = validateAuthHeaders(authHeaders);
+	const isValidAuth: boolean = validateAuthHeaders(authHeaders as string);
 	console.log("isValidAuth(apiLogin)", isValidAuth);
 
 	if (!isValidAuth) {

@@ -1,10 +1,10 @@
 import { dbConfig } from "../config/dbConfig";
-import { Pool } from "pg";
+import { Pool, PoolConfig } from "pg";
 
 /**
  * Create Global 'pool' once for use everywhere
  */
-const pool = new Pool(dbConfig);
+const pool = new Pool(dbConfig as PoolConfig);
 // const client = new Client();
 
 export { pool };

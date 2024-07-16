@@ -1,19 +1,20 @@
-import React, { ReactNode } from "react";
-import styles from "../../css/shared/GoToLink.module.scss";
-import sprite from "../../assets/icons/brands.svg";
+import { CSSProperties, ReactNode } from "react";
 import { NavLink } from "react-router-dom";
+import css from "../../css/shared/GoToLink.module.scss";
+import sprite from "../../assets/icons/brands.svg";
 
 type Props = {
 	to: string; // '/about', '/home' etc
 	children?: ReactNode;
+	styles?: CSSProperties;
 };
 
-const GoToLink = ({ to, children }: Props) => {
+const GoToLink = ({ to, children, styles = {} }: Props) => {
 	return (
-		<div className={styles.GoToLink}>
-			<NavLink to={to}>
+		<div className={css.GoToLink} style={styles}>
+			<NavLink to={to} style={styles}>
 				{children}
-				<svg className={styles.GoToLink_icon}>
+				<svg className={css.GoToLink_icon}>
 					<use xlinkHref={`${sprite}#icon-arrow_forward`}></use>
 				</svg>
 			</NavLink>
@@ -22,7 +23,3 @@ const GoToLink = ({ to, children }: Props) => {
 };
 
 export default GoToLink;
-
-GoToLink.defaultProps = {};
-
-GoToLink.propTypes = {};

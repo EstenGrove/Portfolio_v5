@@ -8,6 +8,8 @@ const ProjectsPage = ({}: Props) => {
 	return (
 		<div className={styles.ProjectsPage}>
 			<Title title="projects" />
+			{/* LIST OF PROJECTS */}
+			{/* SELECTED PROJECT FILLS THE SCREEN */}
 			{/*  */}
 			{/*  */}
 		</div>

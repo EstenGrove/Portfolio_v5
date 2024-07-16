@@ -214,6 +214,7 @@
 :root[data-theme="light"] {
 	--bg-body: #eaecef;
 	--text-main: var(--blueGrey800);
+	--text-secondary: rgb(100, 116, 139);
 	--accent: rgb(105 25 255);
 	--accent-bg: rgba(105, 25, 255, 0.2);
 	--logo-color: rgb(100, 116, 139);
@@ -239,8 +240,8 @@
 }
 :root[data-theme="dark"] {
 	--bg-body: #0d1115;
-	/* --bg-body2: rgb(17, 24, 39); */
 	--text-main: var(--blueGrey200);
+	--text-secondary: rgb(100, 116, 139);
 	--accent: rgb(105 25 255);
 	--accent-bg: rgba(105, 25, 255, 0.2);
 	--logo-color: #ffffff;
