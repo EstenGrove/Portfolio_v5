@@ -35,8 +35,14 @@ const API_ENDPOINTS = {
 	analytics: {
 		logVisit: "/TinyPixel",
 	},
+	projects: {
+		getAllProjects: "/GetProjects",
+	},
+	snippets: {
+		getAllSnippets: "/GetSnippets",
+	},
 };
-const { analytics } = API_ENDPOINTS;
+const { analytics, projects, snippets } = API_ENDPOINTS;
 
 const enableTinyPixel = CURRENT_ENV_NAME !== "local";
 
@@ -46,6 +52,12 @@ export {
 	CURRENT_ENV_NAME as currentEnvName,
 };
 
-export { API_ENDPOINTS, analytics };
-
-export { enableTinyPixel };
+export {
+	// feature flag
+	enableTinyPixel,
+	// endpoints
+	API_ENDPOINTS,
+	analytics,
+	projects,
+	snippets,
+};

@@ -2,9 +2,9 @@ import React from "react";
 import styles from "../../css/projects/ProjectsItem.module.scss";
 import sprite from "../../assets/icons/brands.svg";
 import Picture from "../shared/Picture";
-import { Project } from "../../configs/projectsConfig";
 import GoToLink from "../shared/GoToLink";
 import GoToProject from "./GoToProject";
+import { Project } from "../../features/projects/types";
 
 type Props = {
 	project: Project;
@@ -49,7 +49,7 @@ const ProjectsItem = ({ project }: Props) => {
 
 				<div className={styles.ProjectsItem_info_links}>
 					<IconLink link={project?.links?.github ?? ""} />
-					<GoToProject to="/projects">
+					<GoToProject to={`/projects?pid=${project?.id ?? 0}`}>
 						View {project?.title ?? "Project"}
 					</GoToProject>
 				</div>
