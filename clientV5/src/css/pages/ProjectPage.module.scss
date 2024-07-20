@@ -2,7 +2,18 @@
 @import "../../sass/mixins";
 @import "../../sass/custom";
 
+$basePadding: var(--pagePadding);
+// top/bottom & left/right (sides)
+$topPadding: var(--projectPaddingTop);
+$sidePadding: var(--projectPaddingSides);
+
 .ProjectPage {
 	@include fill_container;
-	padding: var(--pagePadding);
+	padding: $topPadding $sidePadding;
+}
+
+@media only screen and (max-width: 800px) {
+	.ProjectPage {
+		padding: $topPadding $basePadding;
+	}
 }

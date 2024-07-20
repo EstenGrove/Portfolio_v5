@@ -183,6 +183,11 @@
 	/* LAYOUT */
 	--pagePadding: 5%;
 	--page-content-padding: 5%;
+	/* PROJECT'S PAGE PADDING */
+	--projectPaddingTop: var(--pagePadding);
+	--projectPaddingSides: calc(var(--pagePadding) * 4);
+	--projectSubtitleColor: var(--blueGrey700);
+
 	/* --accent: rgb(105 25 255); */
 	--accent: #ff0066;
 	--accent-bg: rgba(105, 25, 255, 0.2);
@@ -241,6 +246,8 @@
 	--skill-bg: var(--accent-bg);
 	/* BADGES BACKGROUND COLOR */
 	--badgeBG: var(--accent-bg);
+
+	--projectSubtitleColor: var(--blueGrey500);
 }
 :root[data-theme="dark"] {
 	--bg-body: #0d1115;
@@ -270,6 +277,7 @@
 
 	/* BADGES BACKGROUND COLOR */
 	--badgeBG: var(--blueGrey900);
+	--projectSubtitleColor: var(--blueGrey700);
 }
 
 *,

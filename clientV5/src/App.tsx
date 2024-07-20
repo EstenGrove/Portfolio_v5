@@ -10,18 +10,16 @@ import { Provider } from "react-redux";
 import { store } from "./store/store";
 // global components
 import Navbar from "./components/layout/Navbar";
+import ScrollToTop from "./components/shared/ScrollToTop";
 import ScrollToTopButton from "./components/shared/ScrollToTopButton";
 // pages
 import HomePage from "./pages/HomePage";
 import AboutPage from "./pages/AboutPage";
 import ProjectsPage from "./pages/ProjectsPage";
+import ProjectPage from "./pages/ProjectPage";
 import SnippetsPage from "./pages/SnippetsPage";
 import ContactPage from "./pages/ContactPage";
 import BlogPage from "./pages/BlogPage";
-import { genericGet } from "./utils/utils_misc";
-import ProjectPage from "./pages/ProjectPage";
-
-genericGet();
 
 function App() {
 	return (
@@ -40,6 +38,7 @@ function App() {
 								<Route path="blog" element={<BlogPage />} />
 								<Route path="*" element={<HomePage />} />
 							</Routes>
+							<ScrollToTop />
 							<ScrollToTopButton />
 						</div>
 					</ThemeProvider>
