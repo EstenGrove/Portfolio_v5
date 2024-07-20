@@ -1,3 +1,5 @@
+import { useSelector } from "react-redux";
+import { selectProjects } from "../../features/projects/projectsSlice";
 import styles from "../../css/projects/ProjectsSection.module.scss";
 import Title from "../shared/Title";
 import ProjectsList from "./ProjectsList";
@@ -7,13 +9,15 @@ import ProjectsList from "./ProjectsList";
 // ----------- <SelectedItem/> -----------
 
 const ProjectsSection = () => {
+	const projects = useSelector(selectProjects);
+	console.log("projects", projects);
 	return (
 		<section className={styles.ProjectsSection}>
 			<Title title="projects" />
 			<h4 className={styles.ProjectsSection_subtitle}>
 				Here's a list of selected projects I've worked on:
 			</h4>
-			<ProjectsList />
+			<ProjectsList projects={projects} />
 			{/*  */}
 			{/*  */}
 		</section>

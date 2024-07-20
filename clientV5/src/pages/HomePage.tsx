@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styles from "../css/pages/HomePage.module.scss";
 import resume from "../assets/docs/Resume.pdf";
 import { enableTinyPixel } from "../utils/utils_env";
@@ -14,6 +14,8 @@ import TimelineSection from "../components/home/TimelineSection";
 import SkillsSection from "../components/skills/SkillsSection";
 import GradientBackground from "../components/design/GradientBackground";
 import ProjectsSection from "../components/projects/ProjectsSection";
+import { useAppDispatch } from "../store/store";
+import { fetchProjects } from "../features/projects/operations";
 
 type Props = {};
 
@@ -32,6 +34,7 @@ const ResumeButton = ({ openResume }: TResumeButton) => {
 const isEnabled = enableTinyPixel;
 
 const HomePage = () => {
+	const dispatch = useAppDispatch();
 	const [showResumeModal, setShowResumeModal] = useState<boolean>(false);
 	const [resumeSrc, setResumeSrc] = useState(resume);
 
@@ -41,6 +44,21 @@ const HomePage = () => {
 	const closeResume = () => {
 		setShowResumeModal(false);
 	};
+
+	useEffect(() => {
+		let isMounted = true;
+		if (!isMounted) {
+			return;
+		}
+
+		// fetch projs
+		dispatch(fetchProjects());
+
+		return () => {
+			isMounted = false;
+		};
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
 
 	return (
 		<div data-page="home" className={styles.HomePage}>

@@ -2,9 +2,9 @@ import React from "react";
 import styles from "../../css/projects/ProjectsItem.module.scss";
 import sprite from "../../assets/icons/brands.svg";
 import Picture from "../shared/Picture";
-import GoToLink from "../shared/GoToLink";
 import GoToProject from "./GoToProject";
 import { Project } from "../../features/projects/types";
+import { addEllipsis } from "../../utils/utils_misc";
 
 type Props = {
 	project: Project;
@@ -24,6 +24,25 @@ const IconLink = ({ link }: IconLinkProps) => {
 	);
 };
 
+type BadgeProps = {
+	text: string;
+};
+const Badge = ({ text }: BadgeProps) => {
+	return <li className={styles.Badge}>{text}</li>;
+};
+type BadgeListProps = {
+	list: string[];
+};
+const BadgesList = ({ list }: BadgeListProps) => {
+	return (
+		<div className={styles.BadgesList}>
+			<ul className={styles.BadgesList_list}>
+				{list && list.map((badge) => <Badge key={badge} text={badge} />)}
+			</ul>
+		</div>
+	);
+};
+
 const ProjectsItem = ({ project }: Props) => {
 	return (
 		<li className={styles.ProjectsItem}>
@@ -37,27 +56,17 @@ const ProjectsItem = ({ project }: Props) => {
 				/>
 			</div>
 			<div className={styles.ProjectsItem_info}>
-				<h6 className={styles.ProjectsItem_info_title}>
-					{/* {project?.title} */}
-					Pulley
-				</h6>
-				<p className={styles.ProjectsItem_info_desc}>
-					{/* {project?.desc} */}
-					Custom CLI utility for syncing multiple local Git repositories at
-					once. NodeJS script using Chalk, Inquirer that runs asynchronously.
-				</p>
+				<h6 className={styles.ProjectsItem_info_title}>{project?.title}</h6>
+				<p className={styles.ProjectsItem_info_desc}>{project?.desc}</p>
+				<BadgesList list={project?.listOfTech} />
 
 				<div className={styles.ProjectsItem_info_links}>
 					<IconLink link={project?.links?.github ?? ""} />
 					<GoToProject to={`/projects?pid=${project?.id ?? 0}`}>
-						View {project?.title ?? "Project"}
+						View {addEllipsis(project?.title, 25)}
 					</GoToProject>
 				</div>
 			</div>
-			{/*  */}
-			{/*  */}
-			{/*  */}
-			{/*  */}
 		</li>
 	);
 };

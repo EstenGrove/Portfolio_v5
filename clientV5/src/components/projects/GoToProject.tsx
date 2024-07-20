@@ -1,19 +1,20 @@
-import { ReactNode } from "react";
-import styles from "../../css/projects/GoToProject.module.scss";
+import { CSSProperties, ReactNode } from "react";
+import css from "../../css/projects/GoToProject.module.scss";
 import sprite from "../../assets/icons/brands.svg";
 import { NavLink } from "react-router-dom";
 
 type Props = {
 	to: string;
 	children?: ReactNode;
+	styles?: CSSProperties;
 };
 
-const GoToProject = ({ to, children }: Props) => {
+const GoToProject = ({ to, children, styles }: Props) => {
 	return (
-		<div data-link={to} className={styles.GoToProject}>
-			<NavLink to={to}>
+		<div data-link={to} className={css.GoToProject} style={styles}>
+			<NavLink to={to} style={styles}>
 				{children}
-				<svg className={styles.GoToProject_icon}>
+				<svg className={css.GoToProject_icon}>
 					<use xlinkHref={`${sprite}#icon-arrow_forward`}></use>
 				</svg>
 			</NavLink>

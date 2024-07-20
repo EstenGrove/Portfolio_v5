@@ -1,6 +1,8 @@
-import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import "./App.scss";
+import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import { ThemeProvider } from "./context/ThemeContext";
+import { Provider } from "react-redux";
+import { store } from "./store/store";
 // global components
 import Navbar from "./components/layout/Navbar";
 import ScrollToTopButton from "./components/shared/ScrollToTopButton";
@@ -18,22 +20,24 @@ genericGet();
 function App() {
 	return (
 		<Router>
-			<div className="App">
-				<ThemeProvider>
-					<Navbar />
-					<div className="App_main">
-						<Routes>
-							<Route path="/about" element={<AboutPage />} />
-							<Route path="/projects" element={<ProjectsPage />} />
-							<Route path="/snippets" element={<SnippetsPage />} />
-							<Route path="/contact" element={<ContactPage />} />
-							<Route path="/blog" element={<BlogPage />} />
-							<Route path="*" element={<HomePage />} />
-						</Routes>
-						<ScrollToTopButton />
-					</div>
-				</ThemeProvider>
-			</div>
+			<Provider store={store}>
+				<div className="App">
+					<ThemeProvider>
+						<Navbar />
+						<div className="App_main">
+							<Routes>
+								<Route path="/about" element={<AboutPage />} />
+								<Route path="/projects" element={<ProjectsPage />} />
+								<Route path="/snippets" element={<SnippetsPage />} />
+								<Route path="/contact" element={<ContactPage />} />
+								<Route path="/blog" element={<BlogPage />} />
+								<Route path="*" element={<HomePage />} />
+							</Routes>
+							<ScrollToTopButton />
+						</div>
+					</ThemeProvider>
+				</div>
+			</Provider>
 		</Router>
 	);
 }

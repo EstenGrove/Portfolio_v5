@@ -2,13 +2,16 @@ import React, { useRef } from "react";
 import styles from "../../css/projects/ProjectsList.module.scss";
 import { useIntersectionObserverShared } from "../../hooks/useIntersectionObserverShared";
 import ProjectsItem from "./ProjectsItem";
+import { Project } from "../../features/projects/types";
+import { sortNumAscByKey } from "../../utils/utils_misc";
 
-type Props = {};
+type Props = {
+	projects: Project[];
+};
 
-const list = [1, 2, 3, 4, 5];
-
-const ProjectsList = ({}: Props) => {
+const ProjectsList = ({ projects }: Props) => {
 	const listRef = useRef<HTMLUListElement>(null);
+	const sortedProjects = sortNumAscByKey("id", projects) as Project[];
 	const sharedObserver = useIntersectionObserverShared(listRef, {
 		onIntersect: (entry) => {
 			// do stuff
@@ -17,18 +20,13 @@ const ProjectsList = ({}: Props) => {
 			// do more stuff
 		},
 	});
-	const projects = list;
-	console.log("list", list);
 	return (
 		<div className={styles.ProjectsList}>
 			<ul className={styles.ProjectsList_listContainer}>
-				{projects &&
-					projects.map((project, idx) => (
+				{sortedProjects &&
+					sortedProjects.map((project, idx) => (
 						<ProjectsItem key={idx} project={project} />
 					))}
-				{/*  */}
-				{/*  */}
-				{/*  */}
 			</ul>
 		</div>
 	);
