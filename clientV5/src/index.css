@@ -192,6 +192,8 @@
 	--border: var(--blueGrey600);
 	--bg-overlay: #ffffff;
 
+	--badgeBG: var(--accent-bg);
+
 	/* GRADIENTS */
 	--darkGradient: radial-gradient(
 		farthest-corner circle at 50% 50% in oklab,
@@ -237,6 +239,8 @@
 	--timeline-dot-size: 1.5rem;
 	/* SKILLS FILTERS */
 	--skill-bg: var(--accent-bg);
+	/* BADGES BACKGROUND COLOR */
+	--badgeBG: var(--accent-bg);
 }
 :root[data-theme="dark"] {
 	--bg-body: #0d1115;
@@ -263,6 +267,9 @@
 	--timeline-dot-size: 1.5rem;
 	/* SKILLS FILTERS */
 	--skill-bg: var(--blueGrey900);
+
+	/* BADGES BACKGROUND COLOR */
+	--badgeBG: var(--blueGrey900);
 }
 
 *,

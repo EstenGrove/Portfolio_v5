@@ -14,8 +14,6 @@
 		padding: 1rem 0;
 		list-style: none;
 		@include flex_col(flex-start, flex-start, wrap);
-		// overflow-x: auto;
-		// @include flex_row(flex-start, center, nowrap);
 		gap: 1rem 2rem;
 
 		&::-webkit-scrollbar {
@@ -27,5 +25,11 @@
 			border-radius: 5rem;
 			background-color: var(--border);
 		}
+	}
+}
+
+@media only screen and (max-width: 1020px) {
+	.ProjectsList {
+		padding: 1rem 0;
 	}
 }

@@ -1,10 +1,10 @@
 import React from "react";
 import styles from "../../css/projects/ProjectsItem.module.scss";
 import sprite from "../../assets/icons/brands.svg";
-import Picture from "../shared/Picture";
-import GoToProject from "./GoToProject";
 import { Project } from "../../features/projects/types";
 import { addEllipsis } from "../../utils/utils_misc";
+import Picture from "../shared/Picture";
+import GoToProject from "./GoToProject";
 
 type Props = {
 	project: Project;
@@ -62,8 +62,8 @@ const ProjectsItem = ({ project }: Props) => {
 
 				<div className={styles.ProjectsItem_info_links}>
 					<IconLink link={project?.links?.github ?? ""} />
-					<GoToProject to={`/projects?pid=${project?.id ?? 0}`}>
-						View {addEllipsis(project?.title, 25)}
+					<GoToProject to={`/projects/${project.id}`}>
+						View {addEllipsis(project?.title, 20)}
 					</GoToProject>
 				</div>
 			</div>

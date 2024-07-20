@@ -6,6 +6,7 @@ import { ResponseModel } from "../../models/shared/ResponseModel";
 
 const app = express();
 
+// Fetch all projects from the database & return them to the client
 const getProjects = async (req: Request, res: Response, next: NextFunction) => {
 	const rows = (await getAllProjects()) as DBProject[];
 	const normedRows = normalizeProjectsMany(rows);

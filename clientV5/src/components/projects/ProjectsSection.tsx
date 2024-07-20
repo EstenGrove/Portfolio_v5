@@ -10,7 +10,6 @@ import ProjectsList from "./ProjectsList";
 
 const ProjectsSection = () => {
 	const projects = useSelector(selectProjects);
-	console.log("projects", projects);
 	return (
 		<section className={styles.ProjectsSection}>
 			<Title title="projects" />

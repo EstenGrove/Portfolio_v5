@@ -1,18 +1,15 @@
-import { useMemo, useRef } from "react";
-import styles from "../../css/shared/Title.module.scss";
-import { useIntersectionObserver } from "../../hooks/useIntersectionObserver";
+import { CSSProperties } from "react";
+import css from "../../css/shared/Title.module.scss";
 
 type Props = {
 	title?: string;
+	styles?: CSSProperties;
 };
 
-const Title = ({ title }: Props) => {
+const Title = ({ title, styles }: Props) => {
 	return (
-		<div
-			// className={isActive ? `${styles.Title} ${styles.animated}` : styles.Title}
-			className={styles.Title}
-		>
-			<h3 className={styles.Title_heading}>
+		<div className={css.Title} style={styles}>
+			<h3 className={css.Title_heading} style={styles}>
 				{title}
 				<b>.</b>
 			</h3>

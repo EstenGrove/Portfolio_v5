@@ -19,8 +19,6 @@ $accent: var(--accent);
 .ProjectsItem {
 	width: $cardWidth;
 	min-width: auto;
-	// max-width: $cardWidth;
-	// max-width: 100%;
 	max-width: $container;
 	min-height: $cardHeight;
 	max-height: auto;
@@ -108,8 +106,7 @@ $accent: var(--accent);
 	font-size: 1.2rem;
 	font-weight: 600;
 	color: $accent;
-	background-color: var(--blueGrey900);
-	background-color: var(--skill-bg);
+	background-color: var(--badgeBG);
 }
 
 .IconLink {
@@ -133,29 +130,24 @@ $accent: var(--accent);
 	}
 }
 
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 1020px) {
 	.ProjectsItem {
 		width: 100%;
 		min-width: 100%;
 		max-width: 100vw;
 		@include flex_col(center, center);
-		height: 35rem;
+		min-height: 35rem;
+		height: auto;
 
 		&_img {
 			width: 100%;
-			border-right: none;
+			height: 20rem;
+			min-height: 20rem;
+			border: none;
 		}
 
 		&_info {
-			// padding: 3rem 3rem;
-			$infoPadding: 3% 4%;
-
-			&_links {
-				width: 100%;
-				// comment this out for aligned right
-				@include flex_row(space-between, center);
-				gap: 0 1rem;
-			}
+			padding: $infoPadding;
 		}
 	}
 	.IconLink {

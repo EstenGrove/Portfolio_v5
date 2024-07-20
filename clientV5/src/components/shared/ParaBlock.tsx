@@ -1,19 +1,14 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import styles from "../../css/shared/ParaBlock.module.scss";
 
 type Props = {
-	text: string;
-	wordsToHighlight?: string[] | [];
+	text?: string;
+	children?: ReactNode;
 };
 
-const ParaBlock = ({ children }: Props) => {
-	return (
-		<div className={styles.ParaBlock}>
-			{/*  */}
-			{/*  */}
-			{/*  */}
-		</div>
-	);
+const ParaBlock = ({ text, children }: Props) => {
+	const childs = !text ? children : text;
+	return <p className={styles.ParaBlock}>{childs}</p>;
 };
 
 export default ParaBlock;
