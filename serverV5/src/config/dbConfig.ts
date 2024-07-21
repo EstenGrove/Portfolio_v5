@@ -1,17 +1,11 @@
-export interface TDBConfig {
-	user: string;
-	password: string;
-	host: string;
-	database: string;
-	port: string;
-}
+import { PoolConfig } from "pg";
 
-const DB_CONFIG: TDBConfig = {
-	user: process.env.DB_USER,
-	password: process.env.DB_USER_PWD,
-	host: process.env.DB_HOST,
-	database: process.env.DB_NAME,
-	port: process.env.DB_PORT,
+const DB_CONFIG: Partial<PoolConfig> = {
+	user: process.env.DB_USER as string,
+	password: process.env.DB_USER_PWD as string,
+	host: process.env.DB_HOST as string,
+	database: process.env.DB_NAME as string,
+	port: Number(process.env.DB_PORT) as number,
 };
 
 export { DB_CONFIG as dbConfig };

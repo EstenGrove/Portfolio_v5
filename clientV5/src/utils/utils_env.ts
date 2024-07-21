@@ -7,21 +7,25 @@
  */
 const API_AUTH = {
 	development: {
+		assets: import.meta.env.VITE_APP_ASSETS_URL,
 		base: import.meta.env.VITE_API_BASE,
 		user: import.meta.env.VITE_API_USER,
 		password: import.meta.env.VITE_API_PASSWORD,
 	},
 	production: {
+		assets: import.meta.env.VITE_APP_ASSETS_URL,
 		base: import.meta.env.VITE_API_BASE,
 		user: import.meta.env.VITE_API_USER,
 		password: import.meta.env.VITE_API_PASSWORD,
 	},
 	testing: {
+		assets: import.meta.env.VITE_APP_ASSETS_URL,
 		base: import.meta.env.VITE_API_BASE,
 		user: import.meta.env.VITE_API_USER,
 		password: import.meta.env.VITE_API_PASSWORD,
 	},
 	local: {
+		assets: import.meta.env.VITE_APP_ASSETS_URL,
 		base: import.meta.env.VITE_API_BASE,
 		user: import.meta.env.VITE_API_USER,
 		password: import.meta.env.VITE_API_PASSWORD,
@@ -35,10 +39,20 @@ const API_ENDPOINTS = {
 	analytics: {
 		logVisit: "/TinyPixel",
 	},
+	projects: {
+		getAllProjects: "/GetProjects",
+		getProjectInfo: "/GetProject",
+	},
+	snippets: {
+		getAllSnippets: "/GetSnippets",
+	},
 };
-const { analytics } = API_ENDPOINTS;
+const { analytics, projects, snippets } = API_ENDPOINTS;
 
-const enableTinyPixel = CURRENT_ENV_NAME !== "local";
+// ##TODO:
+// - Un-comment the following line before deploying
+// const enableTinyPixel = CURRENT_ENV_NAME !== "local";
+const enableTinyPixel = true;
 
 export {
 	API_AUTH,
@@ -46,6 +60,12 @@ export {
 	CURRENT_ENV_NAME as currentEnvName,
 };
 
-export { API_ENDPOINTS, analytics };
-
-export { enableTinyPixel };
+export {
+	// feature flag
+	enableTinyPixel,
+	// endpoints
+	API_ENDPOINTS,
+	analytics,
+	projects,
+	snippets,
+};

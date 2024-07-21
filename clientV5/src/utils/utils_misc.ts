@@ -1,10 +1,11 @@
+import { IResponse } from "../features/types";
 import { currentEnv } from "./utils_env";
 
 // API UTILS
 
 const TOKEN = "DUMMY-TOKEN";
 
-const genericGet = async (token = TOKEN) => {
+const genericGet = async (token: string = TOKEN): Promise<unknown> => {
 	const url = currentEnv.base + "/CheckAuth";
 	try {
 		const request = await fetch(url, {
@@ -12,7 +13,7 @@ const genericGet = async (token = TOKEN) => {
 			headers: {
 				Authorization:
 					"Basic " + btoa(currentEnv.user + ":" + currentEnv.password),
-				SecurityToken: TOKEN,
+				SecurityToken: token,
 				"Content-Type": "application/json",
 			},
 		});
@@ -24,85 +25,41 @@ const genericGet = async (token = TOKEN) => {
 	}
 };
 
-// FUNCTIONAL UTILS
-type TCallback = (arg: unknown) => void;
-type TCallbacks = TCallback[];
+const enforceStrLength = (str: string, maxLength: number): string => {
+	if (str?.length <= maxLength) return str;
+	const newStr = str.slice(0, maxLength);
 
-const compose = (...fns: TCallbacks[]) => {
-	return (initialVal: unknown) => {
-		return fns.reduceRight((acc, fn) => {
-			return fn(acc) as TCallback;
-		}, initialVal);
-	};
-};
-const pipe = (...fns: TCallbacks[]) => {
-	return (initialVal: unknown) => {
-		return fns.reduce((acc, fn) => {
-			return fn(acc);
-		}, initialVal);
-	};
+	return newStr;
 };
 
-const asyncPipe = (...fns: TCallbacks[]) => {
-	return (initialVal: unknown) => {
-		return fns.reduce((acc, fn) => {
-			return acc.then(fn);
-		}, Promise.resolve(initialVal));
-	};
+const addEllipsis = (str: string, maxLength: number = 30): string => {
+	const sliced = enforceStrLength(str, maxLength);
+	return `${sliced}...`;
 };
 
-const groupByReduce = (key, list) => {
-	const results = list.reduce((acc, item) => {
-		const mapKey = item[key];
-		if (!acc[mapKey]) {
-			acc[mapKey] = [];
-		}
-		acc[mapKey].push(item);
-		return acc;
-	}, {});
-	return results;
+// SORTING UTILS
+// sorts number ascending order (1-10)
+const sortNumAscByKey = (key: string, list: object[] = []): object[] => {
+	if (!list || list?.length <= 0) return [];
+	return [...list].sort((a, b) => {
+		return a?.[key as keyof object] - b?.[key as keyof object];
+	});
+};
+// sorts number descending order (10-1)
+const sortNumDescByKey = (key: string, list: object[] = []): object[] => {
+	if (!list || list?.length <= 0) return [];
+	return [...list].sort((a, b) => {
+		return b?.[key as keyof object] - a?.[key as keyof object];
+	});
 };
 
-export interface Grouped<T> {
-	[index: string]: T[];
-}
-
-// const groupByLoop = <T extends object>(
-const groupByLoop = <T extends Record<PropertyKey, object>>(
-	key: keyof T,
-	list: T[]
-	// list: Record<string, T[]>
-): Grouped<T> => {
-	const map = {};
-	for (let i = 0; i < list.length; i++) {
-		const currentItem = list[i];
-		const mapKey = currentItem[key];
-		if (!map[mapKey as keyof object]) {
-			map[mapKey as keyof object] = [];
-		}
-		map[mapKey].push(currentItem);
-	}
-	return map as Grouped<T>;
+export {
+	// http utils
+	genericGet,
+	// misc utils
+	enforceStrLength,
+	addEllipsis,
+	// sorting utils
+	sortNumAscByKey,
+	sortNumDescByKey,
 };
-
-type GroupByReturn<T> = Record<string, T[]>;
-
-const groupByLoop2 = <T extends object>(
-	key: string,
-	list: T[]
-): GroupByReturn<T> => {
-	const map = {};
-	for (let i = 0; i < list.length; i++) {
-		const currentItem = list[i];
-		const mapKey = currentItem[key as keyof object];
-		if (!map[mapKey as keyof object]) {
-			map[mapKey as keyof T] = [];
-		}
-		map[mapKey].push(currentItem);
-	}
-	return map;
-};
-
-export { genericGet };
-
-export { compose, pipe, asyncPipe, groupByReduce, groupByLoop };

@@ -4,5 +4,12 @@
 
 .ProjectsSection {
 	@include fill_container;
-	padding: var(--pagePadding);
+	@include sectionPadding;
+	height: auto;
+	min-height: 100vh;
+
+	&_subtitle {
+		font-size: 2rem;
+		color: var(--header-name);
+	}
 }

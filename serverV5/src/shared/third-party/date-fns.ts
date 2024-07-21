@@ -23,6 +23,7 @@ type TDateTimeFormats = {
 	short: string;
 	longAndShort: string;
 	shortAndLong: string;
+	longDashes: string;
 };
 
 // DATE-ONLY FORMAT TOKENS
@@ -45,18 +46,25 @@ const DATETIME_TOKENS: TDateTimeFormats = {
 	short: `${DATE_FORMATS.short} ${TIME_FORMATS.short}`,
 	longAndShort: `${DATE_FORMATS.long} ${TIME_FORMATS.short}`,
 	shortAndLong: `${DATE_FORMATS.short} ${TIME_FORMATS.long}`,
+	longDashes: `${DATE_FORMATS.longDashes} ${TIME_FORMATS.long}`,
 };
 
 // formats a single date excludes time
-const formatDate = (date: Date | string, formatToken: string = "long") => {
+const formatDate = (
+	date: Date | string,
+	formatToken: keyof TDateFormats = "long"
+) => {
 	const base: Date = new Date(date);
-	const target: string = DATE_FORMATS[formatToken as keyof TDateFormats];
+	const target = DATE_FORMATS[formatToken as keyof TDateFormats];
 	const result = format(base, target);
 
 	return result;
 };
 // formats a single time excludes date
-const formatTime = (time: Date | string, formatToken: string = "long") => {
+const formatTime = (
+	time: Date | string,
+	formatToken: keyof TTimeFormats = "long"
+) => {
 	const base: Date = new Date(time);
 	const target: string = TIME_FORMATS[formatToken as keyof TTimeFormats];
 	const result = format(base, target);
@@ -66,7 +74,7 @@ const formatTime = (time: Date | string, formatToken: string = "long") => {
 // formats both date & time
 const formatDateTime = (
 	datetime: Date | string,
-	formatToken: string = "long"
+	formatToken: keyof TDateTimeFormats = "long"
 ) => {
 	const base: Date = new Date(datetime);
 	const target: string = DATETIME_TOKENS[formatToken as keyof TDateTimeFormats];
@@ -124,10 +132,49 @@ const subHoursFromDate = (date: Date | string, hours: number): Date => {
 	return withHrs;
 };
 
-export { formatDate, formatTime, formatDateTime };
+// conversions
+const daysToHours = (days: number): number => {
+	return days * 24;
+};
+const daysToMins = (days: number): number => {
+	return days * 1440;
+};
+const daysToSecs = (days: number): number => {
+	return days * 86400;
+};
 
-export { parseTimeString, mergeTimeStrWithDate };
+const hoursToMins = (hours: number): number => {
+	return hours * 60;
+};
+const hoursToSecs = (hours: number): number => {
+	return hours * 3600;
+};
+const minsToSecs = (mins: number): number => {
+	return mins * 60;
+};
+const minsToMs = (mins: number): number => {
+	return mins * 60000;
+};
 
-export { getRelativeDistanceToNow };
-
-export { addHoursToDate, subHoursFromDate };
+export {
+	// formatting
+	formatDate,
+	formatTime,
+	formatDateTime,
+	// parsing
+	parseTimeString,
+	mergeTimeStrWithDate,
+	// relative distance
+	getRelativeDistanceToNow,
+	// conversions
+	addHoursToDate,
+	subHoursFromDate,
+	// time conversions
+	daysToHours,
+	daysToMins,
+	daysToSecs,
+	hoursToMins,
+	hoursToSecs,
+	minsToSecs,
+	minsToMs,
+};

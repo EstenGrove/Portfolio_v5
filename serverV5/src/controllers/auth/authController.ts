@@ -7,17 +7,17 @@ const app = express();
 // NOTE: these are NOT user-level credentials, this just allows access to continue the request (eg. access the api)
 const checkApiAuth = (req: Request, res: Response, next: NextFunction) => {
 	const authHeaders = req.headers.authorization;
-	const isValidAuth = validateAuthHeaders(authHeaders);
+	const isValidAuth = validateAuthHeaders(authHeaders as string);
 
 	console.log("isValidAuth", isValidAuth);
 };
 
 const authMiddleware = (req: Request, res: Response, next: NextFunction) => {
-	const authHeaders = req.headers.authorization;
+	const authHeaders = req.headers.authorization as string;
 	const token = authHeaders.split(/\s+/).pop();
 
 	res.status(200).json({ status: "success" });
-	// next();
+	next();
 };
 
 app.get("/", checkApiAuth);

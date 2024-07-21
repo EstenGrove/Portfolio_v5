@@ -1,4 +1,5 @@
 import { useState, createContext, ReactNode } from "react";
+import { getPreferredTheme } from "../utils/utils_theme";
 
 export type TTheme = "light" | "dark";
 
@@ -12,7 +13,12 @@ type TProps = {
 	children?: ReactNode;
 };
 
-const initialState = "light";
+const getInitialState = (): string => {
+	const preference = getPreferredTheme();
+	return preference as string;
+};
+
+const initialState = getInitialState() as TTheme;
 
 /**
  * Uncomment below once 'accents' & other related items have been added
@@ -25,7 +31,7 @@ const initialState = "light";
 // 	}
 // };
 
-const ThemeContext = createContext<TThemeState>(initialState);
+const ThemeContext = createContext(initialState);
 
 const ThemeProvider = ({ children }: TProps) => {
 	const [currentTheme, setCurrentTheme] = useState<TTheme>(initialState);

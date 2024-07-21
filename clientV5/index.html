@@ -10,10 +10,34 @@
 			rel="stylesheet"
 		/>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>portfolio v5</title>
+		<title>sgore.dev: v5</title>
 	</head>
 	<body>
 		<div id="root"></div>
 		<script type="module" src="/src/main.tsx"></script>
+		<script>
+			// execute media query & fire optional callback on match
+			const queryMedia = (queryStr, callback = null) => {
+				if (window.matchMedia) {
+					const matches = window.matchMedia(queryStr)?.matches;
+					if (callback) {
+						callback(matches);
+					}
+				} else {
+					// un-supported or otherwise unknown
+					return false;
+				}
+			};
+
+			const dark = "(prefers-color-scheme: dark)";
+			queryMedia(dark, (prefersDark) => {
+				console.log("prefers", prefersDark);
+				if (prefersDark) {
+					document.documentElement.dataset.theme = "dark";
+				} else {
+					document.documentElement.dataset.theme = "light";
+				}
+			});
+		</script>
 	</body>
 </html>

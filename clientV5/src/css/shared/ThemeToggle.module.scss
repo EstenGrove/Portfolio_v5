@@ -27,6 +27,7 @@
 		&_icon {
 			animation: toggleLeft 0.3s ease-in-out;
 			animation-fill-mode: backwards;
+			margin-top: 0;
 		}
 	}
 }
@@ -37,6 +38,7 @@
 		&_icon {
 			animation: toggleRight 0.3s ease-in-out;
 			animation-fill-mode: forwards;
+			margin-top: -0.01rem;
 		}
 	}
 }

@@ -12,6 +12,7 @@ type Props = {
 	alt?: string;
 	width?: number;
 	height?: number;
+	[key: string]: unknown;
 };
 
 const Picture = ({

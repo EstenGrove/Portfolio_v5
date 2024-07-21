@@ -1,5 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import { validateAuthHeaders } from "../../shared/utils/authUtils";
+import { BaseError, HTTPStatusCode } from "../../shared/errors/errorHandling";
+import { ResponseModel } from "../../models/shared/ResponseModel";
 
 /**
  * TAuthHeaders:
@@ -9,14 +11,28 @@ import { validateAuthHeaders } from "../../shared/utils/authUtils";
 export type TAuthHeaders = string | undefined;
 
 const apiLogin = (req: Request, res: Response, next: NextFunction) => {
-	const authHeaders: TAuthHeaders = req.headers.authorization;
-	const isValidAuth: boolean = validateAuthHeaders(authHeaders);
-	console.log("isValidAuth(apiLogin)", isValidAuth);
+	const authHeaders: TAuthHeaders =
+		req.headers.authorization ?? req.get("Authorization");
+	const route = req.url;
+	// WE DON'T WANNA RUN THE API AUTH FOR THE '/TinyPixel' ROUTE
+	if (route.includes("/TinyPixel")) return next();
+	const isValidAuth: boolean = validateAuthHeaders(authHeaders as string);
 
 	if (!isValidAuth) {
-		return res.status(401).json({ Status: "FAILED", Message: "Un-authorized" });
+		const err = new BaseError(
+			"Un-authorized",
+			HTTPStatusCode.UNAUTHORIZED,
+			"Invalid or missing API credentials. Please review the Authorization headers in your request handler."
+		);
+		const response = new ResponseModel({
+			status: "FAILED",
+			msg: err.message,
+			errorMsg: err.desc,
+			errorStack: err.stack,
+		});
+		res.status(err.httpCode).json(response);
 	} else {
-		return next();
+		next();
 	}
 };
 

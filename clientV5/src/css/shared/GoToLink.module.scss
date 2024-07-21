@@ -3,6 +3,7 @@
 @import "../../sass/custom";
 
 $accent: var(--accent);
+$sizeCalc: calc(1.5vw + 1.5vh);
 
 .GoToLink {
 	width: max-content;
@@ -13,15 +14,15 @@ $accent: var(--accent);
 		height: calc(1.5vw + 2.2vh);
 		@include flex_row(flex-start, center);
 		gap: 0 0.3rem;
-		font-size: calc(1.5vw + 1.5vh);
+		font-size: $sizeCalc;
 		font-weight: 600;
 		color: $accent;
 		text-decoration: none;
 		@include hoverEffect($accent, $accent);
 	}
 	&_icon {
-		width: calc(1.5vw + 1.5vh);
-		height: calc(1.5vw + 1.5vh);
+		width: $sizeCalc;
+		height: $sizeCalc;
 		fill: $accent;
 		align-self: flex-end;
 	}

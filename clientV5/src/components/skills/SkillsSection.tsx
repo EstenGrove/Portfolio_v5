@@ -1,4 +1,3 @@
-import React from "react";
 import styles from "../../css/skills/SkillsSection.module.scss";
 import Title from "../shared/Title";
 import {
@@ -9,9 +8,7 @@ import SkillsPrimary from "./SkillsPrimary";
 import SkillsController from "./SkillsController";
 // skills config
 
-type Props = {};
-
-const SkillsSection = ({}: Props) => {
+const SkillsSection = () => {
 	const { primary, experience } = skillsConfig as TSkillsConfig;
 	return (
 		<section className={styles.SkillsSection}>

@@ -7,13 +7,13 @@ export interface TAuthHeaders {
 }
 
 /**
- * Checks authorization headers & compares against the target API credentials.
+ * Parses the authorization headers & extracts the username, password both as strings & as the original, readable buffer
  * @param authHeaders {String} - The 'Basic xxxxxxxxx:xxxxxxxx' authorization headers string
- * @returns {Object} - Returns boolean
+ * @returns {TAuthHeaders} - Returns TAuthHeaders: an object w/: 'buffer', 'username' and 'password' for the API
  */
 const processAuthHeaders = (authHeaders: string): TAuthHeaders => {
-	const headerStr = authHeaders.split(/\s+/).pop();
-	const buffer = Buffer.from(headerStr, "base64").toString();
+	const headerStr = authHeaders?.split(/\s+/).pop();
+	const buffer = Buffer?.from(headerStr as string, "base64").toString();
 	const username = buffer?.split(":")?.[0];
 	const password = buffer?.split(":")?.[1];
 
@@ -29,7 +29,8 @@ const processAuthHeaders = (authHeaders: string): TAuthHeaders => {
  * @param authHeaders {String} - The 'Basic xxxxxxxxx:xxxxxxxx' authorization headers string
  * @returns {Boolean} - Returns boolean
  */
-const validateAuthHeaders = (authHeaders: string) => {
+const validateAuthHeaders = (authHeaders: string): boolean => {
+	if (!authHeaders || authHeaders?.length <= 0) return false;
 	// check username, password
 	const { username, password } = processAuthHeaders(authHeaders);
 

@@ -183,6 +183,11 @@
 	/* LAYOUT */
 	--pagePadding: 5%;
 	--page-content-padding: 5%;
+	/* PROJECT'S PAGE PADDING */
+	--projectPaddingTop: var(--pagePadding);
+	--projectPaddingSides: calc(var(--pagePadding) * 4);
+	--projectSubtitleColor: var(--blueGrey700);
+
 	/* --accent: rgb(105 25 255); */
 	--accent: #ff0066;
 	--accent-bg: rgba(105, 25, 255, 0.2);
@@ -191,6 +196,8 @@
 
 	--border: var(--blueGrey600);
 	--bg-overlay: #ffffff;
+
+	--badgeBG: var(--accent-bg);
 
 	/* GRADIENTS */
 	--darkGradient: radial-gradient(
@@ -214,6 +221,7 @@
 :root[data-theme="light"] {
 	--bg-body: #eaecef;
 	--text-main: var(--blueGrey800);
+	--text-secondary: rgb(100, 116, 139);
 	--accent: rgb(105 25 255);
 	--accent-bg: rgba(105, 25, 255, 0.2);
 	--logo-color: rgb(100, 116, 139);
@@ -236,11 +244,15 @@
 	--timeline-dot-size: 1.5rem;
 	/* SKILLS FILTERS */
 	--skill-bg: var(--accent-bg);
+	/* BADGES BACKGROUND COLOR */
+	--badgeBG: var(--accent-bg);
+
+	--projectSubtitleColor: var(--blueGrey500);
 }
 :root[data-theme="dark"] {
 	--bg-body: #0d1115;
-	/* --bg-body2: rgb(17, 24, 39); */
 	--text-main: var(--blueGrey200);
+	--text-secondary: rgb(100, 116, 139);
 	--accent: rgb(105 25 255);
 	--accent-bg: rgba(105, 25, 255, 0.2);
 	--logo-color: #ffffff;
@@ -262,6 +274,10 @@
 	--timeline-dot-size: 1.5rem;
 	/* SKILLS FILTERS */
 	--skill-bg: var(--blueGrey900);
+
+	/* BADGES BACKGROUND COLOR */
+	--badgeBG: var(--blueGrey900);
+	--projectSubtitleColor: var(--blueGrey700);
 }
 
 *,
@@ -280,17 +296,22 @@ body {
 	padding: 0 0;
 	min-height: 100%;
 	background-color: var(--bg-body);
+
 	font-family: "Raleway", "Roboto", -apple-system, BlinkMacSystemFont, Segoe UI,
 		Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	::selection {
-		background-color: pink;
+		background-color: rgba(105, 25, 255, 0.2);
+		color: #fff;
 	}
 }
 
 code {
+	padding: 0.2rem 0.4rem;
+	border-radius: 0.5rem;
 	font-family: source-code-pro, Menlo, Monaco, Consolas, Courier New, monospace;
+	color: rgb(0, 226, 189);
 }
 
 :root[data-theme="light"] > body {
