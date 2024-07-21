@@ -7,10 +7,15 @@ import { Project } from "./types";
 
 /**
  * Potential interface/type for 'state.selectedProject':
- * - contains an array of paragraphs to render out
+ * - contains an array of paragraphs per section to be rendered:
+ * 		- 'about.': array of paragraphs for the 'about' section
+ * 		- 'usecases.': array of paragraphs for the 'usecases' section
+ * 		- 'insights.': array of paragraphs for the 'insights' section
  */
 export interface ICurrentProject extends Project {
-	paragraphs: string[];
+	about: string[];
+	usecases: string[];
+	insights: string[];
 	createdDate: string;
 	updatedDate: string | null;
 	isActive: true;

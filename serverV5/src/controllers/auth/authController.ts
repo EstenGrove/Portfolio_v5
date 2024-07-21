@@ -17,7 +17,7 @@ const authMiddleware = (req: Request, res: Response, next: NextFunction) => {
 	const token = authHeaders.split(/\s+/).pop();
 
 	res.status(200).json({ status: "success" });
-	// next();
+	next();
 };
 
 app.get("/", checkApiAuth);

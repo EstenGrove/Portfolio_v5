@@ -1,7 +1,9 @@
 import { useState, useEffect } from "react";
+import { enableTinyPixel } from "../utils/utils_env";
+import { useAppDispatch } from "../store/store";
+import { fetchProjects } from "../features/projects/operations";
 import styles from "../css/pages/HomePage.module.scss";
 import resume from "../assets/docs/Resume.pdf";
-import { enableTinyPixel } from "../utils/utils_env";
 // components
 import { WaveSeparator } from "../components/design/Wave";
 import WaveBackground from "../components/design/WaveBackground";
@@ -9,15 +11,13 @@ import TinyPixel from "../components/shared/TinyPixel";
 import Header from "../components/layout/Header";
 import Modal from "../components/shared/Modal";
 import AboutSection from "../components/about/AboutSection";
-import QuotesSection from "../components/home/QuotesSection";
 import TimelineSection from "../components/home/TimelineSection";
 import SkillsSection from "../components/skills/SkillsSection";
 import GradientBackground from "../components/design/GradientBackground";
 import ProjectsSection from "../components/projects/ProjectsSection";
-import { useAppDispatch } from "../store/store";
-import { fetchProjects } from "../features/projects/operations";
-
-type Props = {};
+// ##TODO:
+// - Add/finish this section or remove it entirely!!!
+import QuotesSection from "../components/home/QuotesSection";
 
 type TResumeButton = {
 	openResume: () => void;

@@ -2,6 +2,34 @@ import express, { NextFunction, Request, Response } from "express";
 
 const app = express();
 
+const ENABLE_LOGGING = false;
+
+// just logs the headers to the console
+const debugLogger = (req: Request) => {
+	const pageRoute = req.query.page ?? "Unknown";
+	const locale = req.query.locale ?? "Not Recognized";
+	const tzOffset = req.query.tzOffset ?? "Unknown";
+	const timezone = req.query.tz ?? "Not sure";
+	// From rest of the headers or elsewhere
+	const referrer = req.headers.referer ?? req.get("referrer");
+	const userAgent = req.headers.userAgent ?? req.get("User-Agent");
+	const origin = req.headers.origin ?? req.get("origin");
+	const userIP = req.socket.remoteAddress;
+	const languages = req.headers["accept-language"];
+
+	console.group("Log Visit");
+	console.log("referrer", referrer);
+	console.log("userAgent", userAgent);
+	console.log("origin", origin);
+	console.log("userIP", userIP);
+	console.log("pageRoute", pageRoute);
+	console.log("languages", languages);
+	console.log("locale", locale);
+	console.log("tzOffset", tzOffset);
+	console.log("timezone", timezone);
+	console.groupEnd();
+};
+
 /**
  * A static response containing:
  * - Base64-encoded transparent image in .gif format
@@ -26,33 +54,13 @@ const logPageVisit = async (
 	// - User-Agent: browser, platform & device meta
 	// - User's IP Address: IP address of request's origin
 	// From query params:
-	const pageRoute = req.query.page ?? "Unknown";
-	const locale = req.query.locale ?? "Not Recognized";
-	const tzOffset = req.query.tzOffset ?? "Unknown";
-	const timezone = req.query.tz ?? "Not sure";
-	// From rest of the headers or elsewhere
-	const referrer = req.headers.referer ?? req.get("referrer");
-	const userAgent = req.headers.userAgent ?? req.get("User-Agent");
-	const origin = req.headers.origin ?? req.get("origin");
-	const userIP = req.socket.remoteAddress;
-	const languages = req.headers["accept-language"];
 
-	console.group("Log Visit");
-	console.log("referrer", referrer);
-	console.log("userAgent", userAgent);
-	console.log("origin", origin);
-	console.log("userIP", userIP);
-	console.log("pageRoute", pageRoute);
-	console.log("languages", languages);
-	console.log("locale", locale);
-	console.log("tzOffset", tzOffset);
-	console.log("timezone", timezone);
-	console.groupEnd();
-
-	// res.status(200).json({ status: "success" });
+	if (ENABLE_LOGGING) {
+		debugLogger(req);
+	}
 	res.status(200).json(response);
 };
 
-app.get("/", logPageVisit);
+app.get("/TinyPixel", logPageVisit);
 
 export { logPageVisit };

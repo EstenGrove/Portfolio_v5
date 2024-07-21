@@ -15,9 +15,9 @@ const PORT = process.env.PORT || 5000;
 app.use(express.json());
 app.use(cors());
 
-// Routes: public-facing
-app.use("/api/v1", apiLogin, routes_v1);
-// Routes: internal only
+// Routes: public-facing (includes API auth)
+app.use("/api/v1", routes_v1);
+// Routes: internal only (excludes API auth)
 app.use("/api/v1", internalRoutes_v1);
 
 app.listen(PORT, () => {

@@ -19,7 +19,8 @@ $accent: var(--accent);
 .ProjectsItem {
 	width: $cardWidth;
 	min-width: auto;
-	max-width: $container;
+	// max-width: $container;
+	max-width: max(100%, 120rem);
 	min-height: $cardHeight;
 	max-height: auto;
 	height: $cardHeight;
@@ -127,6 +128,17 @@ $accent: var(--accent);
 		width: $iconSize;
 		height: $iconSize;
 		fill: var(--text-secondary);
+	}
+}
+
+@media only screen and (min-width: 1200px) {
+	.ProjectsItem {
+		max-width: 120rem;
+	}
+}
+@media only screen and (max-width: 1199px) {
+	.ProjectsItem {
+		max-width: 100%;
 	}
 }
 

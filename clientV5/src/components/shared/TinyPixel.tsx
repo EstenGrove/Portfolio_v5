@@ -1,4 +1,4 @@
-import { memo } from "react";
+import { memo, useMemo } from "react";
 import { analytics, currentEnv, enableTinyPixel } from "../../utils/utils_env";
 
 /**
@@ -9,10 +9,17 @@ import { analytics, currentEnv, enableTinyPixel } from "../../utils/utils_env";
  * - Then the controller creates a db record w/ the header info & details about the request
  */
 
-type TPageRoute = `/${string}` | `/`;
+// Available page routes, that we want to track
+type PageRoute =
+	| "/"
+	| "/about"
+	| "/projects"
+	| "/contact"
+	| "/snippets"
+	| `/projects/${number}`;
 
 type Props = {
-	pageRoute: TPageRoute;
+	pageRoute: PageRoute;
 };
 
 const getTimezone = () => {
@@ -47,13 +54,42 @@ const getSrc = (options: TSrcOptions) => {
 	return url;
 };
 
-const TinyPixelPure = ({ pageRoute = "/about" }: Props) => {
-	const src = getSrc({
+const fetchSrc = async (pageRoute: string = "/") => {
+	const srcUrl = getSrc({
 		page: pageRoute,
 		locale: getLocale(),
 		tzOffset: getTzOffset(),
 		tz: getTimezone(),
 	});
+	try {
+		const request = await fetch(srcUrl, {
+			method: "GET",
+			headers: {
+				Authorization: btoa(currentEnv.user + ":" + currentEnv.password),
+			},
+		});
+		const response = await request.json();
+		console.log("response", response);
+		return response.body;
+	} catch (error) {
+		console.log("error", error);
+		return error;
+	}
+};
+
+const TinyPixelPure = ({ pageRoute = "/" }: Props) => {
+	// const src = getSrc({
+	// 	page: pageRoute,
+	// 	locale: getLocale(),
+	// 	tzOffset: getTzOffset(),
+	// 	tz: getTimezone(),
+	// });
+
+	const src = useMemo(async () => {
+		const imgSrc = await fetchSrc(pageRoute);
+		return imgSrc;
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
 
 	if (!enableTinyPixel) {
 		return null;
@@ -61,8 +97,8 @@ const TinyPixelPure = ({ pageRoute = "/about" }: Props) => {
 	return (
 		<>
 			<img
-				src={src}
-				alt="Tiny Pixel"
+				src={src as unknown as string}
+				alt={`Tiny Pixel: ${pageRoute}`}
 				width="0"
 				height="0"
 				style={{ display: "none" }}

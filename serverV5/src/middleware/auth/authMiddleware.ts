@@ -9,9 +9,12 @@ import { validateAuthHeaders } from "../../shared/utils/authUtils";
 export type TAuthHeaders = string | undefined;
 
 const apiLogin = (req: Request, res: Response, next: NextFunction) => {
-	const authHeaders: TAuthHeaders = req.headers.authorization;
+	const authHeaders: TAuthHeaders =
+		req.headers.authorization ?? req.get("Authorization");
+	const route = req.url;
+	// WE DON'T WANNA RUN THE API AUTH FOR THE '/TinyPixel' ROUTE
+	if (route.includes("/TinyPixel")) return next();
 	const isValidAuth: boolean = validateAuthHeaders(authHeaders as string);
-	console.log("isValidAuth(apiLogin)", isValidAuth);
 
 	if (!isValidAuth) {
 		return res.status(401).json({ Status: "FAILED", Message: "Un-authorized" });

@@ -37,6 +37,7 @@ const API_ENDPOINTS = {
 	},
 	projects: {
 		getAllProjects: "/GetProjects",
+		getProjectInfo: "/GetProject",
 	},
 	snippets: {
 		getAllSnippets: "/GetSnippets",
@@ -44,7 +45,10 @@ const API_ENDPOINTS = {
 };
 const { analytics, projects, snippets } = API_ENDPOINTS;
 
-const enableTinyPixel = CURRENT_ENV_NAME !== "local";
+// ##TODO:
+// - Un-comment the following line before deploying
+// const enableTinyPixel = CURRENT_ENV_NAME !== "local";
+const enableTinyPixel = true;
 
 export {
 	API_AUTH,

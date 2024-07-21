@@ -20,6 +20,15 @@ export interface ServerProject {
 	SourceList: ProjectMediaSource[];
 }
 
+export interface ServerProjectInfo extends ServerProject {
+	About: string[];
+	UseCases: string[];
+	Insights: string[];
+	CreatedDate: string;
+	UpdatedDate: string | null;
+	IsActive: boolean;
+}
+
 /////////////////////////////////////////////////
 //////////// CLIENT FORMATTED TYPES ////////////
 /////////////////////////////////////////////////
@@ -44,6 +53,15 @@ export interface Project {
 	fallbackImgSrc: string;
 	sourceList: PictureSource[];
 	links?: ProjectLinks;
+}
+
+export interface ProjectInfo extends Project {
+	about: string[];
+	usecases: string[];
+	insights: string[];
+	createdDate: string;
+	updatedDate: string | null;
+	isActive: true;
 }
 
 export type ProjectsList = Project[];

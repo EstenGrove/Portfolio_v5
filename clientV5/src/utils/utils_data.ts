@@ -1,6 +1,26 @@
-import { PictureSource, Project } from "../features/projects/types";
-import { ServerProject } from "../features/projects/types";
+import {
+	PictureSource,
+	Project,
+	ProjectInfo,
+} from "../features/projects/types";
+import { ServerProject, ServerProjectInfo } from "../features/projects/types";
 import { ServerSnippet, Snippet } from "../features/snippets/types";
+
+// normalizes a single project's info for the ProjectPage
+const normalizeProjectInfo = (project: ServerProjectInfo): ProjectInfo => {
+	const clientProject = normalizeProject(project);
+	const withInfo = {
+		...clientProject,
+		about: project?.About,
+		usecases: project?.UseCases,
+		insights: project?.Insights,
+		createdDate: project?.CreatedDate,
+		updatedDate: project?.UpdatedDate,
+		isActive: project?.IsActive,
+	};
+
+	return withInfo as ProjectInfo;
+};
 
 const normalizeProject = (project: ServerProject): Project => {
 	const record = {
@@ -59,6 +79,8 @@ export {
 	// projects
 	normalizeProject,
 	normalizeProjects,
+	// selected project's page info
+	normalizeProjectInfo,
 	// snippets
 	normalizeSnippet,
 	normalizeSnippets,
