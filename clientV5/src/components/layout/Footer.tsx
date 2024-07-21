@@ -1,0 +1,31 @@
+import styles from "../../css/layout/Footer.module.scss";
+
+const Copyright = () => {
+	const year = new Date().getFullYear();
+	return <span>&#169;Copyright {year}</span>;
+};
+
+const LegalInfo = () => {
+	return (
+		<div className={styles.LegalInfo}>
+			<Copyright />
+			<span>
+				All Rights Reserved. <i>sgore.dev</i>
+			</span>
+		</div>
+	);
+};
+
+const Footer = () => {
+	return (
+		<footer className={styles.Footer}>
+			<div className={styles.Footer_inner}>
+				<div className={styles.Footer_inner_siteInfo}>
+					<LegalInfo />
+				</div>
+			</div>
+		</footer>
+	);
+};
+
+export default Footer;

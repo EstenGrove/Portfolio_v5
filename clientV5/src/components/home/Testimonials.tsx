@@ -1,9 +1,9 @@
 import React from "react";
 import styles from "../../css/home/Testimonials.module.scss";
-import Testimony from "./Testimony";
+import Testimony, { TTestimony } from "./Testimony";
 
 type Props = {
-	testimonials: object[];
+	testimonials: TTestimony[];
 };
 
 const Testimonials = ({ testimonials }: Props) => {

@@ -20,6 +20,9 @@ import ProjectPage from "./pages/ProjectPage";
 import SnippetsPage from "./pages/SnippetsPage";
 import ContactPage from "./pages/ContactPage";
 import BlogPage from "./pages/BlogPage";
+import { currentEnv } from "./utils/utils_env";
+
+console.log("currentEnv", currentEnv);
 
 function App() {
 	return (

@@ -69,22 +69,13 @@ const fetchSrc = async (pageRoute: string = "/") => {
 			},
 		});
 		const response = await request.json();
-		console.log("response", response);
 		return response.body;
 	} catch (error) {
-		console.log("error", error);
 		return error;
 	}
 };
 
 const TinyPixelPure = ({ pageRoute = "/" }: Props) => {
-	// const src = getSrc({
-	// 	page: pageRoute,
-	// 	locale: getLocale(),
-	// 	tzOffset: getTzOffset(),
-	// 	tz: getTimezone(),
-	// });
-
 	const src = useMemo(async () => {
 		const imgSrc = await fetchSrc(pageRoute);
 		return imgSrc;

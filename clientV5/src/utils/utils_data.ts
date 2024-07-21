@@ -2,9 +2,12 @@ import {
 	PictureSource,
 	Project,
 	ProjectInfo,
+	ProjectLinks,
+	ProjectMediaSources,
 } from "../features/projects/types";
 import { ServerProject, ServerProjectInfo } from "../features/projects/types";
 import { ServerSnippet, Snippet } from "../features/snippets/types";
+import { currentEnv } from "./utils_env";
 
 // normalizes a single project's info for the ProjectPage
 const normalizeProjectInfo = (project: ServerProjectInfo): ProjectInfo => {
@@ -22,6 +25,18 @@ const normalizeProjectInfo = (project: ServerProjectInfo): ProjectInfo => {
 	return withInfo as ProjectInfo;
 };
 
+// Due to varied environments, we need to prefix the environment's url to the start of each 'srcSet' path
+const normalizeSourceList = (
+	sourceList: ProjectMediaSources
+): PictureSource[] => {
+	const normalList = sourceList.map((src) => ({
+		...src,
+		srcSet: currentEnv.assets + src.srcSet,
+	}));
+
+	return normalList;
+};
+
 const normalizeProject = (project: ServerProject): Project => {
 	const record = {
 		id: project?.ProjectID,
@@ -30,11 +45,9 @@ const normalizeProject = (project: ServerProject): Project => {
 		alt: project?.Alt,
 		listOfTech: project?.ListOfTech,
 		fallbackImgSrc: project?.FallbackImgSrc,
-		sourceList: project?.SourceList,
-		links: {
-			github: "",
-			site: "",
-		},
+		// sourceList: project?.SourceList,
+		sourceList: normalizeSourceList(project?.SourceList),
+		links: project?.Links as ProjectLinks,
 	};
 
 	return record;

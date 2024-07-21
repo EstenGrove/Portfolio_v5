@@ -17,10 +17,9 @@ const fetchAllProjects = async (): Promise<ProjectsReturn | unknown> => {
 			},
 		});
 		const response = await request.json();
-		console.log("response", response);
+
 		return response;
 	} catch (error) {
-		console.log("error", error);
 		return error;
 	}
 };
@@ -39,10 +38,9 @@ const fetchProjectInfo = async (
 			},
 		});
 		const response = await request.json();
-		console.log("response", response);
+
 		return response;
 	} catch (error) {
-		console.log("error", error);
 		return error;
 	}
 };

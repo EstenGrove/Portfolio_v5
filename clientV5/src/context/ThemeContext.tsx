@@ -31,7 +31,6 @@ const initialState = getInitialState() as TTheme;
 // 	}
 // };
 
-// const ThemeContext = createContext<TThemeState>(initialState as string as TThemeState);
 const ThemeContext = createContext(initialState);
 
 const ThemeProvider = ({ children }: TProps) => {

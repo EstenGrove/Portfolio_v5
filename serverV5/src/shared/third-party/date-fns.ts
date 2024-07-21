@@ -132,10 +132,49 @@ const subHoursFromDate = (date: Date | string, hours: number): Date => {
 	return withHrs;
 };
 
-export { formatDate, formatTime, formatDateTime };
+// conversions
+const daysToHours = (days: number): number => {
+	return days * 24;
+};
+const daysToMins = (days: number): number => {
+	return days * 1440;
+};
+const daysToSecs = (days: number): number => {
+	return days * 86400;
+};
 
-export { parseTimeString, mergeTimeStrWithDate };
+const hoursToMins = (hours: number): number => {
+	return hours * 60;
+};
+const hoursToSecs = (hours: number): number => {
+	return hours * 3600;
+};
+const minsToSecs = (mins: number): number => {
+	return mins * 60;
+};
+const minsToMs = (mins: number): number => {
+	return mins * 60000;
+};
 
-export { getRelativeDistanceToNow };
-
-export { addHoursToDate, subHoursFromDate };
+export {
+	// formatting
+	formatDate,
+	formatTime,
+	formatDateTime,
+	// parsing
+	parseTimeString,
+	mergeTimeStrWithDate,
+	// relative distance
+	getRelativeDistanceToNow,
+	// conversions
+	addHoursToDate,
+	subHoursFromDate,
+	// time conversions
+	daysToHours,
+	daysToMins,
+	daysToSecs,
+	hoursToMins,
+	hoursToSecs,
+	minsToSecs,
+	minsToMs,
+};

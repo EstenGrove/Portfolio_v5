@@ -21,8 +21,8 @@ const ProjectsPageHeader = ({ project }: Props) => {
 			</div>
 			<div className={styles.ProjectsPageHeader_img}>
 				<Picture
-					width={700}
-					height={500}
+					width={880}
+					height={400}
 					alt={project?.alt}
 					sourceList={project?.sourceList}
 					fallbackSrc={project?.fallbackImgSrc}

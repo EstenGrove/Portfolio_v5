@@ -19,9 +19,7 @@
 			// execute media query & fire optional callback on match
 			const queryMedia = (queryStr, callback = null) => {
 				if (window.matchMedia) {
-					// media query matches
 					const matches = window.matchMedia(queryStr)?.matches;
-					console.log("Matches: ", matches);
 					if (callback) {
 						callback(matches);
 					}

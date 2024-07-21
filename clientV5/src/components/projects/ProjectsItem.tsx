@@ -1,4 +1,4 @@
-import React from "react";
+import React, { CSSProperties } from "react";
 import styles from "../../css/projects/ProjectsItem.module.scss";
 import sprite from "../../assets/icons/brands.svg";
 import { Project } from "../../features/projects/types";
@@ -43,16 +43,24 @@ const BadgesList = ({ list }: BadgeListProps) => {
 	);
 };
 
+// REQUIREMENTS:
+// - Consider creating a rotated image of each project's image
+// 		- Rotated around -45degs so it goes from lower-left to upper-right w/ a matching background perhaps
+// - Add a purple mask overlay w/ opacity of .4 that allows the image to bleed thru slightly
+// 		- On hover, sets opacity to 1.0 for clarity of the image
+
 const ProjectsItem = ({ project }: Props) => {
 	return (
 		<li className={styles.ProjectsItem}>
 			<div className={styles.ProjectsItem_img}>
+				<div className={styles.ProjectsItem_img_mask}></div>
 				<Picture
 					width={350}
 					height={350}
 					alt={project?.alt ?? project?.desc}
 					sourceList={project?.sourceList}
 					fallbackSrc={project?.fallbackImgSrc}
+					style={{ borderRadius: "1rem 0 0 1rem", maxHeight: "100%" }}
 				/>
 			</div>
 			<div className={styles.ProjectsItem_info}>

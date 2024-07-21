@@ -18,6 +18,10 @@ export interface ServerProject {
 	ListOfTech: string[];
 	FallbackImgSrc: string;
 	SourceList: ProjectMediaSource[];
+	Links: {
+		github: string | null;
+		site: string | null;
+	};
 }
 
 export interface ServerProjectInfo extends ServerProject {
