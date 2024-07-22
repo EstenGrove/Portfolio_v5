@@ -1,0 +1,42 @@
+@import "../../sass/variables";
+@import "../../sass/mixins";
+@import "../../sass/custom";
+
+.BackButton {
+	width: 4rem;
+	height: 4rem;
+	min-width: 4rem;
+	min-height: 4rem;
+	max-width: 4rem;
+	max-height: 4rem;
+	border-radius: 50%;
+	border: 1px solid var(--accent);
+	@include flex_row(center, center);
+	margin-left: var(--pagePadding);
+	background-color: transparent;
+
+	&:hover {
+		cursor: pointer;
+		background-color: var(--accent);
+	}
+	&:hover &_icon {
+		fill: #fff;
+	}
+
+	&_icon {
+		width: 3rem;
+		height: 3rem;
+		fill: var(--accent);
+	}
+}
+
+@media only screen and (max-width: 650px) {
+	.BackButton {
+		width: 3rem;
+		height: 3rem;
+		min-width: 3rem;
+		min-height: 3rem;
+		max-width: 3rem;
+		max-height: 3rem;
+	}
+}

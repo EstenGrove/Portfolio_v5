@@ -18,7 +18,6 @@ import ProjectsSection from "../components/projects/ProjectsSection";
 // ##TODO:
 // - Add/finish this section or remove it entirely!!!
 import QuotesSection from "../components/home/QuotesSection";
-import Footer from "../components/layout/Footer";
 
 type TResumeButton = {
 	openResume: () => void;
@@ -76,7 +75,6 @@ const HomePage = () => {
 			<ProjectsSection />
 			{/* <QuotesSection /> */}
 
-			<Footer />
 			<GradientBackground />
 			{showResumeModal && (
 				<Modal closeModal={closeResume}>

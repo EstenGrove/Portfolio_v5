@@ -183,10 +183,13 @@
 	/* LAYOUT */
 	--pagePadding: 5%;
 	--page-content-padding: 5%;
+	/* PRIMARY PAGE WIDTH - MAIN BLOCK */
+	--pageWidth: 85rem;
 	/* PROJECT'S PAGE PADDING */
 	--projectPaddingTop: var(--pagePadding);
 	--projectPaddingSides: calc(var(--pagePadding) * 4);
 	--projectSubtitleColor: var(--blueGrey700);
+	--projectInfoSpacing: 5.5rem;
 
 	/* --accent: rgb(105 25 255); */
 	--accent: #ff0066;

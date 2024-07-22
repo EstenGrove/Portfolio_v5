@@ -1,0 +1,17 @@
+@import "../../sass/variables";
+@import "../../sass/mixins";
+@import "../../sass/custom";
+
+$fontSize: 2rem;
+
+.PageBlock {
+	width: 100%;
+	height: auto;
+	font-size: $fontSize;
+	font-weight: 600;
+	letter-spacing: 0.05rem;
+	margin-bottom: 2rem;
+	color: var(--text-secondary);
+	display: block;
+	margin: 0 auto;
+}

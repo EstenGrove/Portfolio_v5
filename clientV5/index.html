@@ -16,6 +16,7 @@
 		<div id="root"></div>
 		<script type="module" src="/src/main.tsx"></script>
 		<script>
+			const darkQuery = "(prefers-color-scheme: dark)";
 			// execute media query & fire optional callback on match
 			const queryMedia = (queryStr, callback = null) => {
 				if (window.matchMedia) {
@@ -23,15 +24,14 @@
 					if (callback) {
 						callback(matches);
 					}
+					return matches;
 				} else {
 					// un-supported or otherwise unknown
 					return false;
 				}
 			};
 
-			const dark = "(prefers-color-scheme: dark)";
-			queryMedia(dark, (prefersDark) => {
-				console.log("prefers", prefersDark);
+			queryMedia(darkQuery, (prefersDark) => {
 				if (prefersDark) {
 					document.documentElement.dataset.theme = "dark";
 				} else {

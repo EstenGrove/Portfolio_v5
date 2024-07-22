@@ -1,10 +1,5 @@
 import "./App.scss";
-import {
-	Outlet,
-	Route,
-	BrowserRouter as Router,
-	Routes,
-} from "react-router-dom";
+import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import { ThemeProvider } from "./context/ThemeContext";
 import { Provider } from "react-redux";
 import { store } from "./store/store";
@@ -12,6 +7,7 @@ import { store } from "./store/store";
 import Navbar from "./components/layout/Navbar";
 import ScrollToTop from "./components/shared/ScrollToTop";
 import ScrollToTopButton from "./components/shared/ScrollToTopButton";
+import BackButton from "./components/shared/BackButton";
 // pages
 import HomePage from "./pages/HomePage";
 import AboutPage from "./pages/AboutPage";
@@ -20,9 +16,7 @@ import ProjectPage from "./pages/ProjectPage";
 import SnippetsPage from "./pages/SnippetsPage";
 import ContactPage from "./pages/ContactPage";
 import BlogPage from "./pages/BlogPage";
-import { currentEnv } from "./utils/utils_env";
-
-console.log("currentEnv", currentEnv);
+import Footer from "./components/layout/Footer";
 
 function App() {
 	return (
@@ -32,6 +26,7 @@ function App() {
 					<ThemeProvider>
 						<Navbar />
 						<div className="App_main">
+							<BackButton />
 							<Routes>
 								<Route path="about" element={<AboutPage />} />
 								<Route path="projects" element={<ProjectsPage />} />
@@ -44,6 +39,7 @@ function App() {
 							<ScrollToTop />
 							<ScrollToTopButton />
 						</div>
+						<Footer />
 					</ThemeProvider>
 				</div>
 			</Provider>

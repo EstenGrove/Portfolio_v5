@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react";
+import { ReactNode } from "react";
 import styles from "../../css/shared/ParaBlock.module.scss";
 
 type Props = {
